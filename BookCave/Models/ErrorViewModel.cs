@@ -1,6 +1,6 @@
 using System;
 
-namespace Verklegt2.Models
+namespace BookCave.Models
 {
     public class ErrorViewModel
     {
