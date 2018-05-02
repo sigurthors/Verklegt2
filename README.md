@@ -2,7 +2,7 @@
 Verklegt námskeið 2 - Háskólinn í Reykjavík 2018
 
 
-Nemendur:
+## Nemendur:
 
 Sigurþór Sumarliðason
 
@@ -14,4 +14,4 @@ Njáll Mýrdal Árnason
 
 
 
-The Book Cave er vefverslun fyrir bækur
+### The Book Cave er vefverslun fyrir bækur
