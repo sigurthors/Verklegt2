@@ -19,7 +19,7 @@ namespace BookCave.Controllers
 
         public IActionResult Index()
         {
-            var Books = _bookRepo.GetAllBooks();
+            var Books = _bookRepo.GetTop5Books();
             return View(Books);
         }
     }
