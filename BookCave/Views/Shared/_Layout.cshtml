@@ -37,6 +37,7 @@
                     <li><a asp-area="" asp-controller="Book" asp-action="Top5">Vinsælustu bækur</a></li>
                     <li><a asp-area="" asp-controller="Author" asp-action="Index">Höfundar</a></li>
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
