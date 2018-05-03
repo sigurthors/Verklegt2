@@ -18,6 +18,7 @@ namespace BookCave.Repositories
         {
             var Authors = (from a in _db.Authors
                           join b in _db.Books on a.Id equals b.AuthorId
+                          orderby a.Name
                           select new AuthorListViewModel
                           {
                               Id = a.Id,
@@ -26,7 +27,7 @@ namespace BookCave.Repositories
                               AuthorImage = a.AuthorImage,
                               Details = a.Details,
                               //Bæta bókum í lista?
-                          }).ToList();
+                          }).Distinct().ToList();
 
             return Authors;
         }
