@@ -28,5 +28,11 @@ namespace BookCave.Controllers
             var Books = _bookRepo.GetTop10Books();
             return View(Books);
         }
+
+        public IActionResult Details(int? id)
+        {
+            var Book = _bookRepo.GetBookById(id);
+            return View(Book);
+        }
     }
 }
