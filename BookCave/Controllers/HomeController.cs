@@ -5,22 +5,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
-using BookCave.Services;
+using BookCave.Repositories;
 
 namespace BookCave.Controllers
 {
     public class HomeController : Controller
     {
-        private BookService _bookService;
-
+        private BookRepo _bookRepo;
         public HomeController()
         {
-            _bookService = new BookService();
+            _bookRepo = new BookRepo();
         }
 
         public IActionResult Index()
         {
-            var Books = _bookService.GetAllBooks();
+            var Books = _bookRepo.GetAllBooks();
             return View(Books);
         }
     }
