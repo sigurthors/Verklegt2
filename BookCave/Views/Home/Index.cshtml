@@ -1,9 +1,5 @@
 ﻿@model List<BookCave.Models.ViewModels.BookListViewModel>
 
-@{
-    ViewData["Title"] = "Home Page";
-}
-
 <form action="" method="">
     <input type="text" placeholder="Leitaðu að bók með nafni eða höfund">
     <button type="submit">Leita</button>
@@ -12,9 +8,10 @@
 <div>
     @foreach(var Books in @Model)
     {
-        <p>Title: @Books.Title</p>
-        <p>Released: @Books.ReleaseYear</p>
-        <p>Rating: @Books.Rating</p>
-        <p>Author: @Books.Author</p>
+        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Books.Id">@Books.Title</a></h2>
+        <p>Útgáfuár: @Books.ReleaseYear</p>
+        <p>Einkunn: @Books.Rating</p>
+        <p>Höfundur: @Books.Author</p>
+        <br>
     }
 </div>

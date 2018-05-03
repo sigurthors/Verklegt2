@@ -26,6 +26,7 @@ namespace BookCave.Repositories
                         {
                             Id = b.Id,
                             Title = b.Title,
+                            CoverImage = b.CoverImg,
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
@@ -44,6 +45,7 @@ namespace BookCave.Repositories
                         {
                             Id = b.Id,
                             Title = b.Title,
+                            CoverImage = b.CoverImg,
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
@@ -51,6 +53,24 @@ namespace BookCave.Repositories
                         }).Take(10).ToList();
 
             return Books;
+        }
+
+        public BookListViewModel GetBookById(int? BookId)
+        {
+            var Book = (from b in _db.Books
+                        join a in _db.Authors on b.AuthorId equals a.Id
+                        where BookId == b.Id
+                        select new BookListViewModel
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            CoverImage = b.CoverImg,
+                            ReleaseYear = b.ReleaseYear,
+                            Rating = b.Rating,
+                            AuthorId = a.Id,
+                            Author = a.Name
+                        }).SingleOrDefault();
+            return Book;
         }
     }
 }
