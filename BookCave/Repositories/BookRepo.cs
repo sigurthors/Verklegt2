@@ -26,6 +26,7 @@ namespace BookCave.Repositories
                         {
                             Id = b.Id,
                             Title = b.Title,
+                            CoverImage = b.CoverImg,
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
@@ -44,6 +45,7 @@ namespace BookCave.Repositories
                         {
                             Id = b.Id,
                             Title = b.Title,
+                            CoverImage = b.CoverImg,
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
@@ -62,6 +64,7 @@ namespace BookCave.Repositories
                         {
                             Id = b.Id,
                             Title = b.Title,
+                            CoverImage = b.CoverImg,
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
