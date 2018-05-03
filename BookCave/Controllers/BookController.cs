@@ -23,9 +23,9 @@ namespace BookCave.Controllers
             return View(Books);
         }
 
-        public IActionResult Top5()
+        public IActionResult Top10()
         {
-            var Books = _bookRepo.GetTop5Books();
+            var Books = _bookRepo.GetTop10Books();
             return View(Books);
         }
     }

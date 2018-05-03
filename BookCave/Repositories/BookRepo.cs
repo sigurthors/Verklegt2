@@ -35,7 +35,7 @@ namespace BookCave.Repositories
             return Books;
         }
 
-        public List<BookListViewModel> GetTop5Books()
+        public List<BookListViewModel> GetTop10Books()
         {
             var Books = (from b in _db.Books
                         join a in _db.Authors on b.AuthorId equals a.Id
@@ -48,7 +48,7 @@ namespace BookCave.Repositories
                             Rating = b.Rating,
                             AuthorId = a.Id,
                             Author = a.Name
-                        }).Take(5).ToList();
+                        }).Take(10).ToList();
 
             return Books;
         }
