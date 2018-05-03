@@ -5,9 +5,7 @@
     @foreach(var Author in @Model)
     {
         <div>
-            <h2>@Author.Name</h2>
-            <p>Fæddur: @Author.BirthDate</p>
-            <p>Upplýsingar: @Author.Details</p>
+            <h2><a asp-controller="Author" asp-action="Details" asp-route-id="@Author.Id">@Author.Name</a></h2>
             <br>
         </div>
     }

@@ -31,5 +31,22 @@ namespace BookCave.Repositories
 
             return Authors;
         }
+
+        public AuthorListViewModel GetAuthorById(int? AuthId)
+        {
+            var Author = (from a in _db.Authors
+                          join b in _db.Books on a.Id equals b.AuthorId
+                          where AuthId == a.Id
+                          select new AuthorListViewModel
+                          {
+                              Id = a.Id,
+                              Name = a.Name,
+                              BirthDate = a.BirthDate,
+                              AuthorImage = a.AuthorImage,
+                              Details = a.Details,
+                              //Books = b.Title
+                          }).Distinct().SingleOrDefault();
+            return Author;
+        }
     }
 }
