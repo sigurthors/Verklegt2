@@ -10,6 +10,6 @@ namespace BookCave.Models.ViewModels
         public int BirthDate { get; set; }
         public string AuthorImage { get; set; }
         public string Details { get; set; }
-        public List<Book> Books { get; set; }
+        public List<string> Books { get; set; }
     }
 }

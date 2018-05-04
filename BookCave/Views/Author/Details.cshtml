@@ -5,5 +5,11 @@
     <p>Fæddur: @Model.BirthDate</p>
     <p>Upplýsingar: @Model.Details</p>
     <img src="@Model.AuthorImage" alt="Author Portrait">
-    <!--<p>Bækur: @Model.Books</p>-->
+    <p>Bækur:</p>
+    @foreach(var i in Model.Books)
+    {
+        <p>@i</p>
+    }
+    
+    
 </div>
