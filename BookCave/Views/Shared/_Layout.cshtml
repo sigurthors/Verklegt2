@@ -37,6 +37,12 @@
                     <li><a asp-area="" asp-controller="Book" asp-action="Index">Bókaflokkar</a></li>
                     <li><a asp-area="" asp-controller="Book" asp-action="Top10">Vinsælustu bækur</a></li>
                     <li><a asp-area="" asp-controller="Author" asp-action="Index">Höfundar</a></li>
+                    <li>
+                        <form asp-controller="Book" asp-action="Search" method="post">
+                            <input type="text" placeholder="Leitaðu að bók með nafni, höfund eða ISBN" name="search">
+                            <button type="submit">Leita</button>
+                        </form>
+                    </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
