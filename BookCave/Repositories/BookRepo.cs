@@ -76,7 +76,6 @@ namespace BookCave.Repositories
                             Rating = b.Rating,
                             AuthorId = a.Id,
                             Author = a.Name,
-<<<<<<< HEAD
                             // Allar bækur eftir sama höfund
                             AuthorsBooks = (from b in _db.Books
                                             join a in _db.Authors on b.AuthorId equals a.Id
@@ -90,9 +89,6 @@ namespace BookCave.Repositories
                                                 AuthorId = b.AuthorId,
                                                 Author = a.Name
                                             }).ToList()
-=======
-                            Isbn = b.Isbn
->>>>>>> fe9e96650794944a1c15259ef27d1e3008998675
                         }).SingleOrDefault();
             return Book;
         }
