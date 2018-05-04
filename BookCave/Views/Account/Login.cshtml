@@ -1,6 +1,6 @@
 @model BookCave.Models.ViewModels.LoginViewModel
 
-<h1>Skrá inn</h1>
+<h1>Innskráning</h1>
 <form asp-action="Login" asp-controller="Account">
     <div class="form-group">
         <label for="Username">Notendanafn</label>
@@ -19,3 +19,7 @@
         <button type="submit" class="btn btn-primary">Innskrá</button>
     </div>
 </form>
+<div>
+    <h2>Áttu ekki aðgang?</h2>
+    <a class="btn btn-success" href="./Register">Nýskráning</a>
+</div>
