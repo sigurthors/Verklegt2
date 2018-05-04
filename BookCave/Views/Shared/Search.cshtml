@@ -5,15 +5,14 @@
     <button type="submit">Leita</button>
 </form>
 
-
 @foreach(var Book in @Model)
 {
     <div>
-        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h2>
+        <h2>@Book.Title</h2>
         <p>Útgáfuár: @Book.ReleaseYear</p>
         <p>Einkunn: @Book.Rating</p>
         <p>Höfundur: @Book.Author</p>
         <p>ISBN: @Book.Isbn</p>
-        <br>
+        <img src="@Book.CoverImage" alt="Book Cover">
     </div>
 }

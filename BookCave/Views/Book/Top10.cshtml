@@ -2,12 +2,13 @@
 
 <div>
     <h1>10 Vinsælustu bækur</h1>
-    @foreach(var Books in Model)
+    @foreach(var Book in Model)
     {
-        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Books.Id">@Books.Title</a></h2>
-        <p>Útgáfuár: @Books.ReleaseYear</p>
-        <p>Einkunn: @Books.Rating</p>
-        <p>Höfundur: @Books.Author</p>
+        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h2>
+        <p>Útgáfuár: @Book.ReleaseYear</p>
+        <p>Einkunn: @Book.Rating</p>
+        <p>Höfundur: @Book.Author</p>
+        <p>ISBN: @Book.Isbn</p>
         <br>
     }
 </div>

@@ -30,7 +30,8 @@ namespace BookCave.Repositories
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
-                            Author = a.Name
+                            Author = a.Name,
+                            Isbn = b.Isbn
                         }).ToList();
 
             return Books;
@@ -49,7 +50,8 @@ namespace BookCave.Repositories
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
-                            Author = a.Name
+                            Author = a.Name,
+                            Isbn = b.Isbn
                         }).Take(10).ToList();
 
             return Books;
@@ -68,9 +70,76 @@ namespace BookCave.Repositories
                             ReleaseYear = b.ReleaseYear,
                             Rating = b.Rating,
                             AuthorId = a.Id,
-                            Author = a.Name
+                            Author = a.Name,
+                            Isbn = b.Isbn
                         }).SingleOrDefault();
             return Book;
         }
+
+        public List<BookListViewModel> GetBookByName(string Title)
+        {
+            var Books = _db.Books    // Starting table
+                        .Join(_db.Authors, // Table to join
+                        b => b.AuthorId,        // Starting table to compare
+                        a => a.Id,   // Joined table var to compare
+                        (b, a) => new BookListViewModel{  // Join into a new model
+                            Id = b.Id,
+                            Title = b.Title,
+                            CoverImage = b.CoverImg,
+                            ReleaseYear = b.ReleaseYear,
+                            Rating = b.Rating,
+                            AuthorId = a.Id,
+                            Author = a.Name,
+                            Isbn = b.Isbn
+                        })
+                        .Where(b => b.Title.ToLower().Contains(Title.ToLower())).ToList();    // Where, item in table that contains title
+
+            return Books;
+        }
+
+        public List<BookListViewModel> GetBookByAuthor(string Author)
+        {
+            var Authors = _db.Books    // Starting table
+                    .Join(_db.Authors, // Table to join
+                    b => b.AuthorId,        // Starting table to compare
+                    a => a.Id,   // Joined table var to compare
+                    (b, a) => new BookListViewModel{  // Join into a new model
+                        Id = b.Id,
+                        Title = b.Title,
+                        CoverImage = b.CoverImg,
+                        ReleaseYear = b.ReleaseYear,
+                        Rating = b.Rating,
+                        AuthorId = a.Id,
+                        Author = a.Name,
+                        Isbn = b.Isbn
+                    })
+                    .Where(b => b.Author.ToLower().Contains(Author.ToLower())).ToList();    // Where, item in table that contains title
+
+            return Authors;
+        }
+
+        public List<BookListViewModel> GetBookByISBN(string ISBN)
+        {
+            var Isbns = _db.Books    // Starting table
+                    .Join(_db.Authors, // Table to join
+                    b => b.AuthorId,        // Starting table to compare
+                    a => a.Id,   // Joined table var to compare
+                    (b, a) => new BookListViewModel{  // Join into a new model
+                        Id = b.Id,
+                        Title = b.Title,
+                        CoverImage = b.CoverImg,
+                        ReleaseYear = b.ReleaseYear,
+                        Rating = b.Rating,
+                        AuthorId = a.Id,
+                        Author = a.Name,
+                        Isbn = b.Isbn
+                    })
+                    .Where(b => b.Isbn.ToLower().Contains(ISBN.ToLower())).ToList();    // Where, item in table that contains title
+
+            return Isbns;
+        }
+
     }
 }
+
+
