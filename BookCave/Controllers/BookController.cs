@@ -45,5 +45,16 @@ namespace BookCave.Controllers
             
             return View(BooksAndAuthorsAndISBN);
         }
+
+        public IActionResult Categories()
+        {
+            var Categories = _bookRepo.GetCategories();
+            return View(Categories);
+        }
+        public IActionResult Category(int? id)
+        {
+            var Books = _bookRepo.GetBookByCategory(id);
+            return View(Books);
+        }
     }
 }

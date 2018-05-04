@@ -157,6 +157,38 @@ namespace BookCave.Repositories
             return Isbns;
         }
 
+        public List<CategoriesListViewModel> GetCategories()
+        {
+            var Categories = (from c in _db.Categories
+                            select new CategoriesListViewModel
+                            {
+                                Id = c.Id,
+                                CategoryName = c.CategoryName,
+                            }
+                            ).ToList();
+            return Categories;
+        }
+
+        public List<BookListViewModel> GetBookByCategory(int? CatId)
+        {
+            var Books = (from c in _db.Categories
+                        join b in _db.Books on c.Id equals b.CategoryId
+                        join a in _db.Authors on b.AuthorId equals a.Id
+                        where CatId == c.Id
+                        select new BookListViewModel
+                        {
+                            Id = b.Id,
+                            Title = b.Title,
+                            CoverImage = b.CoverImg,
+                            ReleaseYear = b.ReleaseYear,
+                            AuthorId = a.Id,
+                            Author = a.Name,
+                            Rating = b.Rating,
+                        }).ToList();
+
+            return Books;
+        }
+
     }
 }
 
