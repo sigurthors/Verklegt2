@@ -4,12 +4,12 @@ namespace BookCave.Models.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Vinsamlegast sláðu inn netfang")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vinsamlegast sláðu inn notendanafn")]
         public string Username { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Vinsamlegast sláðu inn lykilorð")]
         public string Password { get; set; }
     }
 }
