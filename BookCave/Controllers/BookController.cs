@@ -34,5 +34,16 @@ namespace BookCave.Controllers
             var Book = _bookRepo.GetBookById(id);
             return View(Book);
         }
+
+        public IActionResult Search(string search)
+        {
+            var Books = _bookRepo.GetBookByName(search);
+            var Authors = _bookRepo.GetBookByAuthor(search);
+            var Isbn = _bookRepo.GetBookByISBN(search);
+
+            var BooksAndAuthorsAndISBN = Books.Concat(Authors).Concat(Isbn).ToList();
+            
+            return View(BooksAndAuthorsAndISBN);
+        }
     }
 }

@@ -1,17 +1,18 @@
 ﻿@model List<BookCave.Models.ViewModels.BookListViewModel>
 
-<form action="" method="">
-    <input type="text" placeholder="Leitaðu að bók með nafni eða höfund">
+<form asp-controller="Book" asp-action="Search" method="post">
+    <input type="text" placeholder="Leitaðu að bók með nafni, höfund eða ISBN" name="search">
     <button type="submit">Leita</button>
 </form>
 
 <div>
-    @foreach(var Books in @Model)
+    @foreach(var Book in @Model)
     {
-        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Books.Id">@Books.Title</a></h2>
-        <p>Útgáfuár: @Books.ReleaseYear</p>
-        <p>Einkunn: @Books.Rating</p>
-        <p>Höfundur: @Books.Author</p>
+        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h2>
+        <p>Útgáfuár: @Book.ReleaseYear</p>
+        <p>Einkunn: @Book.Rating</p>
+        <p>Höfundur: @Book.Author</p>
+        <p>ISBN: @Book.Isbn</p>
         <br>
     }
 </div>

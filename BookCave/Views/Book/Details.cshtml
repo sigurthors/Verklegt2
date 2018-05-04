@@ -7,3 +7,11 @@
     <p>Höfundur: @Model.Author</p>
     <img src="@Model.CoverImage" alt="Book Cover">
 </div>
+
+<div>
+    <h2>Aðrar bækur eftir @Model.Author</h2>
+    @foreach(var i in Model.AuthorsBooks)
+    {
+        <p><a asp-controller="Book" asp-action="Details" asp-route-id="@i.Id"><img src="@i.CoverImage" alt="Book Cover"></a></p>
+    }
+</div>

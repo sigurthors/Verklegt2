@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BookCave.Models.ViewModels
 {
     public class BookListViewModel
@@ -9,5 +11,7 @@ namespace BookCave.Models.ViewModels
         public double Rating { get; set; }
         public int AuthorId { get; set; }
         public string Author { get; set; }
+        public List<BookInAuthorModel> AuthorsBooks { get; set; } 
+        public string Isbn { get; set; }
     }
 }
