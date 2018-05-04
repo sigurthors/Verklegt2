@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BookCave.Data;
+using BookCave.Data.EntityModels;
 using BookCave.Models.ViewModels;
 
 namespace BookCave.Repositories
@@ -189,6 +190,11 @@ namespace BookCave.Repositories
             return Books;
         }
 
+        public void AddBook(Book book)
+        {
+            _db.Add(book);
+            _db.SaveChanges();
+        }
     }
 }
 

@@ -6,7 +6,9 @@ namespace BookCave.Models.InputModels
         public string CoverImage { get; set; }
         public int ReleaseYear { get; set; }
         public double Rating { get; set; }
-        public string Author { get; set; }
+        public int AuthorId { get; set; }
         public string Isbn { get; set; }
+        public int CategoryId { get; set; }
+        public double Price { get; set; }
     }
 }

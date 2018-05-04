@@ -1,11 +1,22 @@
+@model dynamic 
+
 <div>
     <h2>Create a new book</h2>
     <form asp-controller="Create" asp-action="Create" method="post">
         <input type="text" placeholder="Titill bókar" name="title">
         <input type="number" placeholder="Útgáfu ár" name="year">
         <input type="number" placeholder="Einkunn" name="rating">
-        <input type="text" placeholder="Höfundur" name="author">
+        <select placeholder="Höfundur" name="author">
+            @foreach (var author in Model.Authors)  
+            {  
+                <option value="@author.Id">@author.Name</option>
+            }  
         <input type="text" placeholder="ISBN" name="isbn">
+        <select placeholder="Bókaflokkur" name="category">
+            @foreach (var cato in Model.Categories)  
+            {  
+                <option value="@cato.Id">@cato.CategoryName</option>
+            }  
         <input type="text" placeholder="Netslóð á mynd af bók" name="coverImage">
         <button type="submit">Bæta við</button>
     </form>

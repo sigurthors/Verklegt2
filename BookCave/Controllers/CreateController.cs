@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Repositories;
 using BookCave.Models.InputModels;
+using System.Dynamic;
+using BookCave.Data.EntityModels;
 
 namespace BookCave.Controllers
 {
     public class CreateController : Controller
     {
         private BookRepo _bookRepo;
+        private AuthorRepo _authorRepo;
 
         public CreateController()
         {
             _bookRepo = new BookRepo();
+            _authorRepo = new AuthorRepo();
         }
 
         public IActionResult Index()
@@ -27,12 +31,25 @@ namespace BookCave.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            dynamic mymodel = new ExpandoObject();  
+            mymodel.Categories = _bookRepo.GetCategories();  
+            mymodel.Authors = _authorRepo.GetAllAuthors();
+            return View(mymodel);
         }
         
         [HttpPost]
-        public IActionResult Create(string title, int year, double rating, string author, string isbn, string coverImage)
+        public IActionResult Create(string title, int year, double rating, int author, string isbn, int category, string coverImage)
         {
+            var NewBook = new Book{ 
+                                    Title = title,
+                                    ReleaseYear = year,
+                                    Rating = rating,
+                                    AuthorId = author,
+                                    Isbn = isbn,
+                                    CategoryId = category,
+                                    CoverImg = coverImage
+                                  }; 
+            _bookRepo.AddBook(NewBook);
             return RedirectToAction("Index", "Create");
         }
     }
