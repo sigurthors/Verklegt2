@@ -9,7 +9,8 @@
     @foreach(var i in Model.Books)
     {
         <p><a asp-controller="Book" asp-action="Details" asp-route-id="@i.Id"><img src="@i.CoverImage" alt="Book Cover"></a></p>
+        <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
     }
     
-    
+    <button><a asp-controller="Author" asp-action="Index">Fara til baka</a></button>
 </div>
