@@ -20,8 +20,8 @@ namespace BookCave.Data
 
 //1
 //Bætir inn töflu í gagnagrunn
-//dotnet ef migrations add "SOME INFO TEXT"
+//dotnet ef migrations add .... --context DataContext
 
 //2
 //Þetta kemur töflunni í grunninn
-//dotnet ef database update
+//dotnet ef database update --context DataContext
