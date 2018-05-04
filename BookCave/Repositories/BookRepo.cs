@@ -76,7 +76,8 @@ namespace BookCave.Repositories
                             Rating = b.Rating,
                             AuthorId = a.Id,
                             Author = a.Name,
-                            // Allar bækur eftir sama höfund
+                            Isbn = b.Isbn,
+                            // Allar bækur eftir sama höfund nema sú sem er verið að skoða
                             AuthorsBooks = (from b in _db.Books
                                             join a in _db.Authors on b.AuthorId equals a.Id
                                             where Author == b.AuthorId
