@@ -35,10 +35,10 @@ namespace BookCave.Repositories
         public AuthorListViewModel GetAuthorById(int? AuthId)
         {
             //var BookListByAuthor = new List<string>();
-            List<string> BookListByAuthor = (from a in _db.Authors
-                                    join b in _db.Books on a.Id equals b.AuthorId
-                                    where AuthId == b.AuthorId
-                                    select b.Title).ToList();
+            //List<string> BookListByAuthor = (from a in _db.Authors
+            //                       join b in _db.Books on a.Id equals b.AuthorId
+            //                     where AuthId == b.AuthorId
+            //                   select b.Title).ToList();
 
             var Author = (from a in _db.Authors
                           join b in _db.Books on a.Id equals b.AuthorId
@@ -50,7 +50,21 @@ namespace BookCave.Repositories
                               BirthDate = a.BirthDate,
                               AuthorImage = a.AuthorImage,
                               Details = a.Details,
-                              Books = BookListByAuthor
+                              /*Books = (from a in _db.Authors
+                                       join b in _db.Books on a.Id equals b.AuthorId
+                                       where AuthId == b.AuthorId
+                                       select b.Title).ToList()*/
+                              Books = (from a in _db.Authors
+                                       join b in _db.Books on a.Id equals b.AuthorId
+                                       where AuthId == b.AuthorId
+                                       select new BookInAuthorModel
+                                       {
+                                           Id = b.Id,
+                                           Title = b.Title,
+                                           CoverImage = b.CoverImg,
+                                           AuthorId = a.Id,
+                                           Author = a.Name
+                                       }).ToList()
                           }).FirstOrDefault();
             return Author;
         }
