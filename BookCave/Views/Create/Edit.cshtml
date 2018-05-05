@@ -1,0 +1,28 @@
+@model dynamic 
+
+<div>
+    <h2>Editing @Model.Book.Title</h2>
+    <form asp-controller="Create" asp-action="Edit" method="post">
+        <input type="number" value="@Model.Book.Id" name="id" readonly>
+        <input type="text" value="@Model.Book.Title" name="title">
+        <input type="number" value="@Model.Book.ReleaseYear" name="year">
+        <input type="number" value="@Model.Book.Rating" name="rating">
+        <select value="@Model.Book.Author" name="author">
+            @foreach (var author in Model.Authors)  
+            {  
+                if(@Model.Book.Author == author.Name){
+                    <option value="@author.Id" selected>@author.Name</option>
+                } else{
+                    <option value="@author.Id">@author.Name</option>
+                }
+            }  
+        <input type="text" value="@Model.Book.Isbn" name="isbn">
+        <select placeholder="Bókaflokkur" name="category">
+            @foreach (var cato in Model.Categories)  
+            {  
+                <option value="@cato.Id">@cato.CategoryName</option>
+            }  
+        <input type="text" value="@Model.Book.CoverImage" name="coverImage">
+        <button type="submit">Staðfesta breytingar</button>
+    </form>
+</div>

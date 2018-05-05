@@ -195,6 +195,26 @@ namespace BookCave.Repositories
             _db.Add(book);
             _db.SaveChanges();
         }
+
+        public void RemoveBook(int id)
+        {
+            var Book = _db.Books.Where(b => b.Id == id).SingleOrDefault();
+            _db.Remove(Book);
+            _db.SaveChanges();
+        }
+
+        public void EditBook(int id, string title, int year, double rating, int author, string isbn, int category, string coverImage)
+        {
+            var Book = _db.Books.Where(b => b.Id == id).SingleOrDefault();
+            Book.Title = title;
+            Book.ReleaseYear = year;
+            Book.Rating = rating;
+            Book.AuthorId = author;
+            Book.Isbn = isbn;
+            Book.CategoryId = category;
+            Book.CoverImg = coverImage;
+            _db.SaveChanges();
+        }
     }
 }
 

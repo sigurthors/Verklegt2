@@ -1,3 +1,21 @@
+@model List<BookCave.Models.ViewModels.BookListViewModel>
+<h1>Create / Edit books</h1>
+<div>
+    <ul>
+        @foreach(var Book in Model)
+        {
+            <li><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"><h2>@Book.Title</h2></a>
+                <form action="/Create/Edit">
+                    <button name="id" value="@Book.Id">Edit book</button>
+                </form>
+                <form action="/Create/Remove">
+                    <button name="id" value="@Book.Id">Remove book</button>
+                </form>
+            </li>
+        }
+    </ul>
+</div>
+
 <div>
     <form action="/Create/Create">
         <button>Create book</button>
