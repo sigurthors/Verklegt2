@@ -23,6 +23,7 @@ namespace BookCave.Repositories
             //og breytir þessu svo í lista sem við skilum svo.
             var Books = (from b in _db.Books
                         join a in _db.Authors on b.AuthorId equals a.Id
+                        join c in _db.Categories on b.CategoryId equals c.Id
                         select new BookListViewModel
                         {
                             Id = b.Id,
@@ -32,7 +33,9 @@ namespace BookCave.Repositories
                             Rating = b.Rating,
                             AuthorId = a.Id,
                             Author = a.Name,
-                            Isbn = b.Isbn
+                            Isbn = b.Isbn,
+                            CategoryId = c.Id,
+                            Category = c.CategoryName
                         }).ToList();
 
             return Books;
@@ -42,6 +45,7 @@ namespace BookCave.Repositories
         {
             var Books = (from b in _db.Books
                         join a in _db.Authors on b.AuthorId equals a.Id
+                        join c in _db.Categories on b.CategoryId equals c.Id
                         orderby b.Rating descending
                         select new BookListViewModel
                         {
@@ -52,7 +56,9 @@ namespace BookCave.Repositories
                             Rating = b.Rating,
                             AuthorId = a.Id,
                             Author = a.Name,
-                            Isbn = b.Isbn
+                            Isbn = b.Isbn,
+                            CategoryId = c.Id,
+                            Category = c.CategoryName
                         }).Take(10).ToList();
 
             return Books;
@@ -67,6 +73,7 @@ namespace BookCave.Repositories
             
             var Book = (from b in _db.Books
                         join a in _db.Authors on b.AuthorId equals a.Id
+                        join c in _db.Categories on b.CategoryId equals c.Id
                         where BookId == b.Id
                         select new BookListViewModel
                         {
@@ -78,6 +85,8 @@ namespace BookCave.Repositories
                             AuthorId = a.Id,
                             Author = a.Name,
                             Isbn = b.Isbn,
+                            CategoryId = c.Id,
+                            Category = c.CategoryName,
                             // Allar bækur eftir sama höfund nema sú sem er verið að skoða
                             AuthorsBooks = (from b in _db.Books
                                             join a in _db.Authors on b.AuthorId equals a.Id
@@ -97,11 +106,52 @@ namespace BookCave.Repositories
 
         public List<BookListViewModel> GetBookByName(string Title)
         {
-            var Books = _db.Books    // Starting table
-                        .Join(_db.Authors, // Table to join
-                        b => b.AuthorId,        // Starting table to compare
-                        a => a.Id,   // Joined table var to compare
-                        (b, a) => new BookListViewModel{  // Join into a new model
+            var Books = (from b in _db.Books
+                            join a in _db.Authors on b.AuthorId equals a.Id
+                            join c in _db.Categories on b.CategoryId equals c.Id
+                            select new BookListViewModel{  // Join into a new model
+                                Id = b.Id,
+                                Title = b.Title,
+                                CoverImage = b.CoverImg,
+                                ReleaseYear = b.ReleaseYear,
+                                Rating = b.Rating,
+                                AuthorId = a.Id,
+                                Author = a.Name,
+                                Isbn = b.Isbn,
+                                CategoryId = c.Id,
+                                Category = c.CategoryName
+                            }).Where(b => b.Title.ToLower().Contains(Title.ToLower())).ToList();
+
+            return Books;
+        }
+
+        public List<BookListViewModel> GetBookByAuthor(string Author)
+        {
+            var Authors = (from b in _db.Books
+                            join a in _db.Authors on b.AuthorId equals a.Id
+                            join c in _db.Categories on b.CategoryId equals c.Id
+                            select new BookListViewModel{
+                                Id = b.Id,
+                                Title = b.Title,
+                                CoverImage = b.CoverImg,
+                                ReleaseYear = b.ReleaseYear,
+                                Rating = b.Rating,
+                                AuthorId = a.Id,
+                                Author = a.Name,
+                                Isbn = b.Isbn,
+                                CategoryId = c.Id,
+                                Category = c.CategoryName
+                            }).Where(b => b.Author.ToLower().Contains(Author.ToLower())).ToList();    // Where, item in table that contains title
+
+            return Authors;
+        }
+
+        public List<BookListViewModel> GetBookByISBN(string ISBN)
+        {
+            var Isbns = (from b in _db.Books
+                        join a in _db.Authors on b.AuthorId equals a.Id
+                        join c in _db.Categories on b.CategoryId equals c.Id
+                        select new BookListViewModel{  // Join into a new model
                             Id = b.Id,
                             Title = b.Title,
                             CoverImage = b.CoverImg,
@@ -109,51 +159,10 @@ namespace BookCave.Repositories
                             Rating = b.Rating,
                             AuthorId = a.Id,
                             Author = a.Name,
-                            Isbn = b.Isbn
-                        })
-                        .Where(b => b.Title.ToLower().Contains(Title.ToLower())).ToList();    // Where, item in table that contains title
-
-            return Books;
-        }
-
-        public List<BookListViewModel> GetBookByAuthor(string Author)
-        {
-            var Authors = _db.Books    // Starting table
-                    .Join(_db.Authors, // Table to join
-                    b => b.AuthorId,        // Starting table to compare
-                    a => a.Id,   // Joined table var to compare
-                    (b, a) => new BookListViewModel{  // Join into a new model
-                        Id = b.Id,
-                        Title = b.Title,
-                        CoverImage = b.CoverImg,
-                        ReleaseYear = b.ReleaseYear,
-                        Rating = b.Rating,
-                        AuthorId = a.Id,
-                        Author = a.Name,
-                        Isbn = b.Isbn
-                    })
-                    .Where(b => b.Author.ToLower().Contains(Author.ToLower())).ToList();    // Where, item in table that contains title
-
-            return Authors;
-        }
-
-        public List<BookListViewModel> GetBookByISBN(string ISBN)
-        {
-            var Isbns = _db.Books    // Starting table
-                    .Join(_db.Authors, // Table to join
-                    b => b.AuthorId,        // Starting table to compare
-                    a => a.Id,   // Joined table var to compare
-                    (b, a) => new BookListViewModel{  // Join into a new model
-                        Id = b.Id,
-                        Title = b.Title,
-                        CoverImage = b.CoverImg,
-                        ReleaseYear = b.ReleaseYear,
-                        Rating = b.Rating,
-                        AuthorId = a.Id,
-                        Author = a.Name,
-                        Isbn = b.Isbn
-                    })
-                    .Where(b => b.Isbn.ToLower().Contains(ISBN.ToLower())).ToList();    // Where, item in table that contains title
+                            Isbn = b.Isbn,
+                            CategoryId = c.Id,
+                            Category = c.CategoryName
+                        }).Where(b => b.Isbn.ToLower().Contains(ISBN.ToLower())).ToList();    // Where, item in table that contains title
 
             return Isbns;
         }
@@ -185,6 +194,9 @@ namespace BookCave.Repositories
                             AuthorId = a.Id,
                             Author = a.Name,
                             Rating = b.Rating,
+                            Isbn = b.Isbn,
+                            CategoryId = c.Id,
+                            Category = c.CategoryName
                         }).ToList();
 
             return Books;
