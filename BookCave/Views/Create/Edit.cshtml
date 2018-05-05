@@ -20,7 +20,11 @@
         <select placeholder="Bókaflokkur" name="category">
             @foreach (var cato in Model.Categories)  
             {  
-                <option value="@cato.Id">@cato.CategoryName</option>
+                if(@Model.Book.Category == cato.CategoryName){
+                    <option value="@cato.Id" selected>@cato.CategoryName</option>
+                } else{
+                    <option value="@cato.Id">@cato.CategoryName</option>
+                }
             }  
         <input type="text" value="@Model.Book.CoverImage" name="coverImage">
         <button type="submit">Staðfesta breytingar</button>
