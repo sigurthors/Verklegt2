@@ -13,7 +13,6 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private UserRepo _userRepo;
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
@@ -79,10 +78,6 @@ namespace BookCave.Controllers
         {
             return View();
         }
-        public IActionResult Profile(int? id)
-        {
-            var user = _userRepo.GetUserById(id);
-            return View(user);
-        }
+        
     }
 }
