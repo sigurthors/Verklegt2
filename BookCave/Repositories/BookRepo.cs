@@ -35,7 +35,8 @@ namespace BookCave.Repositories
                             Author = a.Name,
                             Isbn = b.Isbn,
                             CategoryId = c.Id,
-                            Category = c.CategoryName
+                            Category = c.CategoryName,
+                            Price = b.Price
                         }).ToList();
 
             return Books;
@@ -87,6 +88,7 @@ namespace BookCave.Repositories
                             Isbn = b.Isbn,
                             CategoryId = c.Id,
                             Category = c.CategoryName,
+                            Price = b.Price,
                             // Allar bækur eftir sama höfund nema sú sem er verið að skoða
                             AuthorsBooks = (from b in _db.Books
                                             join a in _db.Authors on b.AuthorId equals a.Id

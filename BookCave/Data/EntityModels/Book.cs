@@ -11,5 +11,6 @@ namespace BookCave.Data.EntityModels
         public string Isbn { get; set; }
         public int CategoryId { get; set; }
         public string CoverImg { get; set; }
+        public float Price { get; set; }
     }
 }

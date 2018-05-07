@@ -15,5 +15,6 @@ namespace BookCave.Models.ViewModels
         public string Isbn { get; set; }
         public int CategoryId { get; set; }
         public string Category { get; set; }
+        public double Price { get; set; }
     }
 }
