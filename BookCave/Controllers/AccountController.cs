@@ -89,10 +89,32 @@ namespace BookCave.Controllers
 
             return View(user);
         }
-        public IActionResult Edit()
+        [Authorize]
+        public async Task<IActionResult> Edit()
         {
-            return View();
+            var user = await GetCurrentUserAsync();
+            return View(user);
         }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(ApplicationUser model)
+        {
+            if(ModelState.IsValid)
+            {
+                        
+                var user = await GetCurrentUserAsync();
+                user.Name = model.Name;
+                user.Address = model.Address;
+                user.FavoriteBook = model.FavoriteBook;
+                user.Image = model.Image;
+
+                await _userManager.UpdateAsync(user);
+                
+            }
+            
+            return RedirectToAction("Profile");
+        }
+
 
     }
 }
