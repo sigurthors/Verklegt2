@@ -1,5 +1,17 @@
-@model BookCave.Models.ViewModels.UserViewModel
+@model BookCave.Models.ApplicationUser
 <h1>Minn aðgangur</h1>
 <div>
+    <a href="/Account/Edit">Breyta upplýsingum</a>
+</div>
+<div>
+    <a href="/Account/OrderHistory">Pöntunarsaga</a>
+</div>
+<div>
     <p>@Model.Name</p>
+</div>
+<div>
+    <p>Heimilsfang: @Model.Address</p>
+</div>
+<div>
+    <p>Uppáhalds bók: @Model.FavoriteBook</p>
 </div>

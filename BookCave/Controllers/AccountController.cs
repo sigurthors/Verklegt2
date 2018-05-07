@@ -13,6 +13,10 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        //private UserRepo _userRepo;
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
+
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
@@ -78,6 +82,17 @@ namespace BookCave.Controllers
         {
             return View();
         }
-        
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await GetCurrentUserAsync();
+
+            return View(user);
+        }
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
     }
 }
