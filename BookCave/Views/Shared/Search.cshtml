@@ -1,10 +1,5 @@
 @model List<BookCave.Models.ViewModels.BookListViewModel>
 
-<form asp-controller="Book" asp-action="Search" method="post">
-    <input type="text" placeholder="Leitaðu að bók með nafni, höfund eða ISBN" name="search">
-    <button type="submit">Leita</button>
-</form>
-
 @foreach(var Book in @Model)
 {
     <div>
