@@ -43,5 +43,11 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Remove(int bookId)
+        {
+            _cartRepo.RemoveFromCart(bookId);
+            return RedirectToAction("Index");
+        }
+
     }
 }

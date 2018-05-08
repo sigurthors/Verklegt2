@@ -30,6 +30,13 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void RemoveFromCart(int bookId)
+        {
+            var BookToRemove = _db.Carts.Where(c => c.BookId == bookId).FirstOrDefault();
+            _db.Remove(BookToRemove);
+            _db.SaveChanges();
+        }
+
         public List<CartViewModel> GetCart(string userId)
         {
             var Cart = (from c in _db.Carts
@@ -37,6 +44,7 @@ namespace BookCave.Repositories
                         where c.UserId == userId
                         select new CartViewModel
                         {
+                            Id = b.Id,
                             Title = b.Title,
                             Price = b.Price 
                         }).ToList();
