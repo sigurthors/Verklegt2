@@ -36,12 +36,11 @@
     }
 
     <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
-    <p>Ummæli notanda: 
+    <h3>Ummæli notanda: </h3>
         @foreach(var i in Model.Comments)
         {
-            @i.Review <br>
+            <p>@i.Review </p>
         }
-    </p>
 </div>
 
 <div>
