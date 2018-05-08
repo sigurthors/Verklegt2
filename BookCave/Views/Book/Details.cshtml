@@ -33,10 +33,11 @@
     }
 
     
-    <p>Ummæli notanda: 
+    <h3>Ummæli notanda:</h3> 
         @foreach(var i in Model.Comments)
         {
-            <p>@i.Review </p>
+            
+            <p> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
         }
 </div>
 

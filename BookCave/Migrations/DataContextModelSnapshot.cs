@@ -99,6 +99,8 @@ namespace BookCave.Migrations
 
                     b.Property<string>("Review");
 
+                    b.Property<string>("Username");
+
                     b.HasKey("Id");
 
                     b.ToTable("Comments");

@@ -8,6 +8,7 @@ using BookCave.Models;
 using BookCave.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using BookCave.Data.EntityModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookCave.Controllers
 {
@@ -15,10 +16,13 @@ namespace BookCave.Controllers
     {
         private BookRepo _bookRepo;
         private CommentRepo _commentRepo;
-        public BookController()
+        private readonly UserManager<ApplicationUser> _userManager;
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        public BookController(UserManager<ApplicationUser> userManager)
         {
             _bookRepo = new BookRepo();
             _commentRepo = new CommentRepo();
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -60,17 +64,20 @@ namespace BookCave.Controllers
             var Books = _bookRepo.GetBookByCategory(id);
             return View(Books);
         }
+        [Authorize]
         public IActionResult Comment()
         {
             return View();
         }
         [Authorize]
         [HttpPost]
-        public IActionResult Comment(string review, int id)
+        public async Task<IActionResult> Comment(string review, int id)
         {
+            var user = await GetCurrentUserAsync();
             var NewComment = new Comment {
                 Review = review,
-                BookId = id
+                BookId = id,
+                Username = user.UserName
             };
             _commentRepo.AddComment(NewComment);
             return RedirectToAction("Details", "Book", new {id = id});
