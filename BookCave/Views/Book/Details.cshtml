@@ -37,9 +37,11 @@
         @foreach(var i in Model.Comments)
         {
             
-            <p> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
+            <p id="comment-container"> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
         }
+    <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli</a>
 </div>
+
 
 <div>
     <h2>Aðrar bækur eftir @Model.Author</h2>
@@ -49,7 +51,3 @@
     }
 </div>
 
-<div>
-    <h2>Ummæli</h2>
-    <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli</a>
-</div>
