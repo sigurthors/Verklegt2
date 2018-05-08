@@ -71,7 +71,7 @@ namespace BookCave.Migrations
 
                     b.Property<int>("BookId");
 
-                    b.Property<int>("UserId");
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
@@ -99,9 +99,9 @@ namespace BookCave.Migrations
 
                     b.Property<string>("Review");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Username");
 
-                    b.HasIndex("BookId");
+                    b.HasKey("Id");
 
                     b.ToTable("Comments");
                 });

@@ -11,7 +11,7 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180508123250_CommentTable")]
+    [Migration("20180508152634_CommentTable")]
     partial class CommentTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,8 +46,6 @@ namespace BookCave.Migrations
 
                     b.Property<int>("AuthorId");
 
-                    b.Property<int?>("CartId");
-
                     b.Property<int>("CategoryId");
 
                     b.Property<string>("CoverImg");
@@ -64,23 +62,19 @@ namespace BookCave.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartId");
-
                     b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BookCave.Data.EntityModels.Cart", b =>
                 {
-                    b.Property<int>("CartId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<int>("BookId");
 
-                    b.Property<int>("Quantity");
+                    b.Property<string>("UserId");
 
-                    b.Property<int>("UserId");
-
-                    b.HasKey("CartId");
+                    b.HasKey("Id");
 
                     b.ToTable("Carts");
                 });
@@ -106,9 +100,9 @@ namespace BookCave.Migrations
 
                     b.Property<string>("Review");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Username");
 
-                    b.HasIndex("BookId");
+                    b.HasKey("Id");
 
                     b.ToTable("Comments");
                 });
@@ -165,21 +159,6 @@ namespace BookCave.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.Book", b =>
-                {
-                    b.HasOne("BookCave.Data.EntityModels.Cart")
-                        .WithMany("Books")
-                        .HasForeignKey("CartId");
-                });
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.Comment", b =>
-                {
-                    b.HasOne("BookCave.Data.EntityModels.Book")
-                        .WithMany("Comments")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
