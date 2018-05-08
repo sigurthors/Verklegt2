@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180508101928_Comments")]
+    partial class Comments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +46,8 @@ namespace BookCave.Migrations
 
                     b.Property<int>("AuthorId");
 
+                    b.Property<int?>("CartId");
+
                     b.Property<int>("CategoryId");
 
                     b.Property<string>("CoverImg");
@@ -61,19 +64,23 @@ namespace BookCave.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CartId");
+
                     b.ToTable("Books");
                 });
 
             modelBuilder.Entity("BookCave.Data.EntityModels.Cart", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CartId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BookId");
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("Quantity");
 
                     b.Property<int>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("CartId");
 
                     b.ToTable("Carts");
                 });
@@ -95,7 +102,7 @@ namespace BookCave.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BookId");
+                    b.Property<int?>("BookId");
 
                     b.Property<string>("Review");
 
@@ -103,7 +110,7 @@ namespace BookCave.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("BookCave.Data.EntityModels.Order", b =>
@@ -159,8 +166,6 @@ namespace BookCave.Migrations
 
                     b.ToTable("Users");
                 });
-<<<<<<< HEAD
-=======
 
             modelBuilder.Entity("BookCave.Data.EntityModels.Book", b =>
                 {
@@ -173,10 +178,8 @@ namespace BookCave.Migrations
                 {
                     b.HasOne("BookCave.Data.EntityModels.Book")
                         .WithMany("Comments")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BookId");
                 });
->>>>>>> c4806ead6f9f7e195469753f1cd8c972b739e2d7
 #pragma warning restore 612, 618
         }
     }

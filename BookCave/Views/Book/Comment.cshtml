@@ -1,0 +1,11 @@
+@model BookCave.Data.EntityModels.Comment
+<h2>Skrifa ummæli</h2>
+<form asp-controller="Book" asp-action="Comment">
+    <div class="form-group">
+        <label for="Review">Ummæli:</label>
+        <textarea class="form-control" asp-for="Review" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Staðfesta</button>
+    </div>
+</form>
