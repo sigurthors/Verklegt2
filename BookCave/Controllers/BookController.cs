@@ -66,13 +66,14 @@ namespace BookCave.Controllers
         }
         [Authorize]
         [HttpPost]
-        public IActionResult Comment(string review)
+        public IActionResult Comment(string review, int id)
         {
             var NewComment = new Comment {
-                Review = review
+                Review = review,
+                BookId = id
             };
             _commentRepo.AddComment(NewComment);
-            return RedirectToAction("Index", "Details");
+            return RedirectToAction("Details", "Book", new {id = id});
         }
         
     }
