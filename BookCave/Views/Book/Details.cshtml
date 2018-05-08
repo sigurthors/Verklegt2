@@ -13,7 +13,7 @@
     <p>Ummæli notanda: 
         @foreach(var i in Model.Comments)
         {
-            @i.Review
+            @i.Review <br>
         }
     </p>
 </div>
@@ -28,5 +28,5 @@
 
 <div>
     <h2>Ummæli</h2>
-    <a asp-action="Comment" asp-controller="Book" class="btn btn-info">Skrifa ummæli</a>
+    <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli</a>
 </div>
