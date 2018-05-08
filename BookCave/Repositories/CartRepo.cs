@@ -19,5 +19,12 @@ namespace BookCave.Repositories
            //})
          //  return 0
         //}
+
+        public void AddBookToCart(int bookId, string userId)
+        {
+            var BookToCart = new Cart{ UserId = userId, BookId = bookId };
+            _db.Carts.Add(BookToCart);
+            _db.SaveChanges();
+        }
     }
 }
