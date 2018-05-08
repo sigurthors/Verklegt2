@@ -159,24 +159,6 @@ namespace BookCave.Migrations
 
                     b.ToTable("Users");
                 });
-<<<<<<< HEAD
-=======
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.Book", b =>
-                {
-                    b.HasOne("BookCave.Data.EntityModels.Cart")
-                        .WithMany("Books")
-                        .HasForeignKey("CartId");
-                });
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.Comment", b =>
-                {
-                    b.HasOne("BookCave.Data.EntityModels.Book")
-                        .WithMany("Comments")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
->>>>>>> c4806ead6f9f7e195469753f1cd8c972b739e2d7
 #pragma warning restore 612, 618
         }
     }
