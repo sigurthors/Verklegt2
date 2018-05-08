@@ -10,6 +10,12 @@
     <p>Verð: @Model.Price</p>
     <p><img src="@Model.CoverImage" alt="Book Cover"></p>
     <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
+    <p>Ummæli notanda: 
+        @foreach(var i in Model.Comments)
+        {
+            @i.Review
+        }
+    </p>
 </div>
 
 <div>
@@ -18,4 +24,9 @@
     {
         <p><a asp-controller="Book" asp-action="Details" asp-route-id="@i.Id"><img src="@i.CoverImage" alt="Book Cover"></a></p>
     }
+</div>
+
+<div>
+    <h2>Ummæli</h2>
+    <a asp-action="Comment" asp-controller="Book" class="btn btn-info">Skrifa ummæli</a>
 </div>

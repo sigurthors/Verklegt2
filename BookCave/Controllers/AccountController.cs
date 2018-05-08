@@ -6,6 +6,7 @@ using BookCave.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 namespace BookCave.Controllers
 {
@@ -99,9 +100,9 @@ namespace BookCave.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(ApplicationUser model)
         {
+
             if(ModelState.IsValid)
             {
-                        
                 var user = await GetCurrentUserAsync();
                 user.Name = model.Name;
                 user.Address = model.Address;

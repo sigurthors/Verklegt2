@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BookCave.Data.EntityModels
 {
     public class Book

@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using BookCave.Data.EntityModels;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Models.ViewModels
 {
@@ -16,5 +18,6 @@ namespace BookCave.Models.ViewModels
         public int CategoryId { get; set; }
         public string Category { get; set; }
         public double Price { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

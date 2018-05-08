@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180508102529_CommentsTable")]
+    partial class CommentsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +102,7 @@ namespace BookCave.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BookId");
+                    b.Property<int?>("BookId");
 
                     b.Property<string>("Review");
 
@@ -177,8 +178,7 @@ namespace BookCave.Migrations
                 {
                     b.HasOne("BookCave.Data.EntityModels.Book")
                         .WithMany("Comments")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BookId");
                 });
 #pragma warning restore 612, 618
         }

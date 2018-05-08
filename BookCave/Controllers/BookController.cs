@@ -6,15 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookCave.Models;
 using BookCave.Repositories;
+using Microsoft.AspNetCore.Authorization;
+using BookCave.Data.EntityModels;
 
 namespace BookCave.Controllers
 {
     public class BookController : Controller
     {
         private BookRepo _bookRepo;
+        private CommentRepo _commentRepo;
         public BookController()
         {
             _bookRepo = new BookRepo();
+            _commentRepo = new CommentRepo();
         }
 
         public IActionResult Index()
@@ -56,5 +60,20 @@ namespace BookCave.Controllers
             var Books = _bookRepo.GetBookByCategory(id);
             return View(Books);
         }
+        public IActionResult Comment()
+        {
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult Comment(string review)
+        {
+            var NewComment = new Comment {
+                Review = review
+            };
+            _commentRepo.AddComment(NewComment);
+            return RedirectToAction("Index", "Details");
+        }
+        
     }
 }
