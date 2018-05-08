@@ -59,6 +59,7 @@ namespace BookCave.Repositories
                             AuthorId = a.Id,
                             Author = a.Name,
                             Isbn = b.Isbn,
+                            Price = b.Price,
                             CategoryId = c.Id,
                             Category = c.CategoryName
                         }).Take(10).ToList();

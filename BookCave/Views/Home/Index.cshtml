@@ -1,14 +1,22 @@
 ﻿@model List<BookCave.Models.ViewModels.BookListViewModel>
 
-<div>
-    @foreach(var Book in @Model)
-    {
-        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h2>
-        <p>Útgáfuár: @Book.ReleaseYear</p>
-        <p>Einkunn: @Book.Rating</p>
-        <p>Höfundur: @Book.Author</p>
-        <p>Bókaflokkur: @Book.Category</p>
-        <p>ISBN: @Book.Isbn</p>
-        <br>
-    }
+<div class="container">
+    <div class="row">
+        @foreach(var Book in @Model)
+        {
+            <div class="col-lg-3" align="center">
+                <h3><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h3>
+                <div style="height:180px">
+                <img src="@Book.CoverImage" class="img-thumbnail" alt="Book Cover" width="40%">
+                </div>
+                <p>Útgáfuár: @Book.ReleaseYear</p>
+                <p>Einkunn: @Book.Rating</p>
+                <p>Höfundur: @Book.Author</p>
+                <p>ISBN: @Book.Isbn</p>
+                <p>Bókaflokkur: @Book.Category</p>
+                <p>Verð: @Book.Price</p>
+                <br>
+            </div>
+        }
+    </div>
 </div>
