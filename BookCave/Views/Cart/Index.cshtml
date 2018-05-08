@@ -9,9 +9,10 @@
     @foreach(var Item in @Model)
     {
         <tr>
+            <td>@Item.Id</td>
             <td>@Item.Title</td>
             <td>@Item.Price</td>
+            <td><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">Eyða</a></td>
         </tr>
-        
     }
 </table>
