@@ -23,11 +23,15 @@ namespace BookCave.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index(int? userId)
+        public async Task<IActionResult> Index()
         {
-            //var cart = _cartRepo.GetCartByUserId;
-            //return View(cart);
-            return View();
+            var User = await GetCurrentUserAsync();
+            var UserId = User.Id;
+            
+            
+            var Cart = _cartRepo.GetCart(UserId);
+
+            return View(Cart);
         }
 
         public async Task<IActionResult> Add(int bookId)

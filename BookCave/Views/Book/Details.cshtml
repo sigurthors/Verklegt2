@@ -23,10 +23,7 @@
     @if(SignInManager.IsSignedIn(User))
     {
         <p>Skráður inn sem @claim</p>
-        <a href="@Url.Action("Add", "Cart")?bookId=@Model.Id">Bæta í körfu A</a>
-        <form asp-action="Cart" asp-controller="Add" method="POST">
-            <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
-        </form>
+        <button><a href="@Url.Action("Add", "Cart")?bookId=@Model.Id">Bæta í körfu</a></button>
     }
     else 
     {
@@ -35,7 +32,7 @@
 
     }
 
-    <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
+    
     <p>Ummæli notanda: 
         @foreach(var i in Model.Comments)
         {
