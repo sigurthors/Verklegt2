@@ -1,4 +1,13 @@
 @model BookCave.Models.ViewModels.BookListViewModel
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using BookCave.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    var claim = ((ClaimsIdentity) User.Identity).Claims.FirstOrDefault(c => c.Type == "Name")?.Value;
+}
 
 <div>
     <h2>@Model.Title</h2>
@@ -9,6 +18,23 @@
     <p>ISBN: @Model.Isbn</p>
     <p>Verð: @Model.Price</p>
     <p><img src="@Model.CoverImage" alt="Book Cover"></p>
+
+
+    @if(SignInManager.IsSignedIn(User))
+    {
+        <p>Skráður inn sem @claim</p>
+        <a href="@Url.Action("Add", "Cart")?bookId=@Model.Id">Bæta í körfu A</a>
+        <form asp-action="Cart" asp-controller="Add" method="POST">
+            <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
+        </form>
+    }
+    else 
+    {
+
+        <button><a asp-area="" asp-controller="Account" asp-action="Login"> <span class="glyphicon glyphicon-log-in"></span> Innskrá til að bæta í körfu</a></button>
+
+    }
+
     <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
     <p>Ummæli notanda: 
         @foreach(var i in Model.Comments)
