@@ -127,7 +127,8 @@ namespace BookCave.Repositories
                                 Author = a.Name,
                                 Isbn = b.Isbn,
                                 CategoryId = c.Id,
-                                Category = c.CategoryName
+                                Category = c.CategoryName,
+                                Price = b.Price
                             }).Where(b => b.Title.ToLower().Contains(Title.ToLower())).ToList();
 
             return Books;
@@ -148,7 +149,8 @@ namespace BookCave.Repositories
                                 Author = a.Name,
                                 Isbn = b.Isbn,
                                 CategoryId = c.Id,
-                                Category = c.CategoryName
+                                Category = c.CategoryName,
+                                Price = b.Price
                             }).Where(b => b.Author.ToLower().Contains(Author.ToLower())).ToList();    // Where, item in table that contains title
 
             return Authors;
@@ -169,7 +171,8 @@ namespace BookCave.Repositories
                             Author = a.Name,
                             Isbn = b.Isbn,
                             CategoryId = c.Id,
-                            Category = c.CategoryName
+                            Category = c.CategoryName,
+                            Price = b.Price
                         }).Where(b => b.Isbn.ToLower().Contains(ISBN.ToLower())).ToList();    // Where, item in table that contains title
 
             return Isbns;
@@ -204,7 +207,8 @@ namespace BookCave.Repositories
                             Rating = b.Rating,
                             Isbn = b.Isbn,
                             CategoryId = c.Id,
-                            Category = c.CategoryName
+                            Category = c.CategoryName,
+                            Price = b.Price
                         }).ToList();
 
             return Books;
