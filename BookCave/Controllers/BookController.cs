@@ -30,6 +30,28 @@ namespace BookCave.Controllers
             var Books = _bookRepo.GetAllBooks();
             return View(Books);
         }
+        [HttpGet]
+        public IActionResult Index(string sortOrder)
+        {
+            var bok = _bookRepo.GetAllBooks();
+            if(sortOrder == "titill")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByName();
+            }
+            else if(sortOrder == "titill_desc")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByNameDesc();
+            }
+            else if(sortOrder == "lowToHigh")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByPrice();
+            }
+            else if(sortOrder == "highToLow")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByPriceDesc();
+            }
+            return View(bok);
+        }
 
         public IActionResult Top10()
         {
