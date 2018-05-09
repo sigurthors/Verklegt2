@@ -12,7 +12,6 @@ namespace BookCave.Controllers
 {
     public class CartController : Controller
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         private CartRepo _cartRepo;
@@ -46,6 +45,11 @@ namespace BookCave.Controllers
         public IActionResult Remove(int bookId)
         {
             _cartRepo.RemoveFromCart(bookId);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Increase(int bookId)
+        {
+            _cartRepo.IncreaseInCart(bookId);
             return RedirectToAction("Index");
         }
     }

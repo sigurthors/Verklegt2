@@ -3,12 +3,15 @@
 @{float total = 0;
     @foreach(var price in @Model)
     {
-        total += price.Price;
+        total += price.Price * price.Quantity;
     }
 }
 
+
+
+
 <h1>Karfan Þín</h1>
-<div style="width: 50%">
+<div style="width: 80%">
 <table class="table table-bordered">
     <tr>
         <th>#</th>
@@ -20,11 +23,13 @@
     @foreach(var Item in @Model)
     {
         <tr>
-            <td>@Item.Id</td>
+            <td id="bookID">@Item.Id</td>
             <td>@Item.Title</td>
             <td>@Item.Price kr.</td>
-            <td>Magn kemur her</td>
-            <td><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">Eyða</a></td>
+            <td>@Item.Quantity</td>
+            <!--<td><input type="number" value="@Item.Quantity" min="0" id="quantity"></td>-->
+            <td><button><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">-</a></button><button><a href="@Url.Action("Increase", "Cart")?bookId=@Item.Id">+</a></button></td>
+            <!--<td><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">Eyða</a></td>-->
         </tr>
     }
     <tr>
@@ -43,4 +48,15 @@
 <form asp-controller="Order" asp-action="Checkout" method="get">
     <button>Ganga frá pöntunn án heildarverðs</button>
 </form>
+
+<script>
+
+
+$(document).ready(function(){
+    $("#updateQuantity").click(function(){
+        var _quantity = document.getElementsByTagName("input").value;
+        console.log(_quantity);
+    });
+});
+</script>
 
