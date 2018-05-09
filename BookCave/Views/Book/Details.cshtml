@@ -38,10 +38,10 @@
     <h3>Ummæli notanda:</h3> 
         @foreach(var i in Model.Comments)
         {
-            
+            <p><strong>@i.Username gaf einkunn:</strong> <i>@i.Rating</i></p>
             <p id="comment-container"> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
         }
-    <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli</a>
+    <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli og gefa einkunn</a>
 </div>
 
 

@@ -6,5 +6,6 @@ namespace BookCave.Data.EntityModels
         public string Review { get; set; }
         public int BookId { get; set; }
         public string Username { get; set; }
+        public double Rating { get; set; }
     }
 }
