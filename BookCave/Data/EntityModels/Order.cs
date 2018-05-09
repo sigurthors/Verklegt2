@@ -2,7 +2,8 @@ namespace BookCave.Data.EntityModels
 {
     public class Order
     {
-        public int OrderId { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
         public string CreditCard { get; set; }
         public string BillingAddress { get; set; }
         public string CCValidate { get; set; }
