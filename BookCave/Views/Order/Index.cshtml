@@ -7,7 +7,7 @@
         <ul>
             @foreach(var Book in @Order.Books)
             {
-                <li>@Book.Title - @Book.Price kr.</li>
+                <li>@Book.Title - @Book.Quantity x @Book.Price kr.</li>
             }
         </ul>
         <h2>Sent á @Order.Address, @Order.PostalCode, @Order.Country</h2>
