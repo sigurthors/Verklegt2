@@ -1,0 +1,54 @@
+@model BookCave.Models.InputModels.OrderInputModel
+
+<div>
+    <form asp-action="Checkout" asp-controller="Order" class="form-horizontal">
+        <div class="form-group">
+            <label for="EmailAddress">Netfang</label>
+            <input type="email" asp-for="EmailAddress" class="form-control">
+            <span asp-validation-for="EmailAddress"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="BillingAddress">Heimilisfang</label>
+            <input type="text" asp-for="BillingAddress" class="form-control">
+            <span asp-validation-for="BillingAddress"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="PostalCode">Póstnúmer</label>
+            <input type="text" asp-for="PostalCode" class="form-control">
+            <span asp-validation-for="PostalCode"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="Country">Land</label>
+            <input type="text" asp-for="Country" class="form-control">
+            <span asp-validation-for="Country"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="CreditCard">Kortanúmer</label>
+            <input type="text" asp-for="CreditCard" class="form-control">
+            <span asp-validation-for="CreditCard"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="CCValidate">Gildi korts</label>
+            <input type="text" asp-for="CCValidate" class="form-control">
+            <span asp-validation-for="CCValidate"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="CVV">CVV</label>
+            <input type="text" asp-for="CVV" class="form-control">
+            <span asp-validation-for="CVV"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="CCFirstName">Fornafn á korti</label>
+            <input type="text" asp-for="CCFirstName" class="form-control">
+            <span asp-validation-for="CCFirstName"></span><br>
+        </div>
+        <div class="form-group">
+            <label for="CCLastName">Eftirnafn á korti</label>
+            <input type="text" asp-for="CCLastName" class="form-control">
+            <span asp-validation-for="CCLastName"></span><br>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" >Staðfesta</button>
+        </div>
+    </form>
+</div>

@@ -107,7 +107,6 @@ namespace BookCave.Controllers
                 user.Name = model.Name;
                 user.Address = model.Address;
                 user.FavoriteBook = model.FavoriteBook;
-                user.Image = model.Image;
 
                 await _userManager.UpdateAsync(user);
                 

@@ -11,5 +11,7 @@ namespace BookCave.Models.ViewModels
         public string Username { get; set; }
         [Required(ErrorMessage = "Vinsamlegast sláðu inn lykilorð")]
         public string Password { get; set; }
+        [Compare("Password", ErrorMessage = "Lykilorð eru ekki eins")]
+        public string ConfirmPassword { get; set; }
     }
 }
