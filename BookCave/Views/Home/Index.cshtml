@@ -1,5 +1,7 @@
 ﻿@model List<BookCave.Models.ViewModels.BookListViewModel>
-
+@{
+    ViewData["Title"] = "The Book Cave";
+}
 <div class="container">
     <div class="row">
         @foreach(var Book in @Model)

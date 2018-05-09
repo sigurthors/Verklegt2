@@ -1,5 +1,7 @@
 @model BookCave.Models.ViewModels.AuthorListViewModel
-
+@{
+    ViewData["Title"] = @Model.Name;
+}
 <div>
     <h2>@Model.Name</h2>
     <p>Fæddur: @Model.BirthDate</p>
