@@ -71,7 +71,6 @@ namespace BookCave.Repositories
                         select new CartViewModel
                         {
                             Id = b.Id,
-                            UserId = c.UserId,
                             Title = b.Title,
                             Price = b.Price,
                             Quantity = c.Quantity,
