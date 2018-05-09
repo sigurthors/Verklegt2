@@ -19,7 +19,7 @@ namespace BookCave.Repositories
         public void MakeOrder(OrderInputModel order, string userId)
         {
             var time = DateTime.Now;
-            string formattedTime = time.ToString("dd, MM, yyyy, hh, mm, ss"); //("yyyy, MM, dd, hh, mm, ss")
+            string formattedTime = time.ToString("dd/MM/yyyy hh:mm:ss"); //("yyyy, MM, dd, hh, mm, ss")
             var Order = new Order { 
                                     UserId = userId,
                                     CreditCard = order.CreditCard,

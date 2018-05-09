@@ -14,6 +14,7 @@ namespace BookCave.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        
         //private UserRepo _userRepo;
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
@@ -69,6 +70,7 @@ namespace BookCave.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            ModelState.AddModelError("Error", "Rangt lykilorð eða notendanafn!");
             return View();
         }
 
@@ -107,7 +109,6 @@ namespace BookCave.Controllers
                 user.Name = model.Name;
                 user.Address = model.Address;
                 user.FavoriteBook = model.FavoriteBook;
-                user.Image = model.Image;
 
                 await _userManager.UpdateAsync(user);
                 

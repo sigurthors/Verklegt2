@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BookCave.Data;
 using BookCave.Models;
-
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BookCave
 {
@@ -20,7 +20,6 @@ namespace BookCave
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -54,6 +53,12 @@ namespace BookCave
             services.AddMvc();
         }
 
+        private void createRoles()
+        {
+            AuthenticationDbContext context = new AuthenticationDbContext();
+           // var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -65,6 +70,8 @@ namespace BookCave
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            createRoles();
 
             app.UseStaticFiles();
             app.UseAuthentication();

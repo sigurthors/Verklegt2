@@ -33,8 +33,15 @@
     width: 300px;
 }
 
+#user-image {
+    height: 150px;
+    width: 150px;
+}
+<<<<<<< HEAD
 #search{
     margin: auto;
     margin-top: 10px;
     max-width: 300px;
 }
+=======
+>>>>>>> d4692ac39a5cf214312715f1ceabfe9ed9c91dd1

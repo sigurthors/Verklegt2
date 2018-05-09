@@ -30,6 +30,28 @@ namespace BookCave.Controllers
             var Books = _bookRepo.GetAllBooks();
             return View(Books);
         }
+        [HttpGet]
+        public IActionResult Index(string sortOrder)
+        {
+            var bok = _bookRepo.GetAllBooks();
+            if(sortOrder == "titill")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByName();
+            }
+            else if(sortOrder == "titill_desc")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByNameDesc();
+            }
+            else if(sortOrder == "lowToHigh")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByPrice();
+            }
+            else if(sortOrder == "highToLow")
+            {
+                bok = _bookRepo.GetAllBooksOrderedByPriceDesc();
+            }
+            return View(bok);
+        }
 
         public IActionResult Top10()
         {
@@ -71,13 +93,14 @@ namespace BookCave.Controllers
         }
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Comment(string review, int id)
+        public async Task<IActionResult> Comment(string review, double rating, int id)
         {
             var user = await GetCurrentUserAsync();
             var NewComment = new Comment {
                 Review = review,
                 BookId = id,
-                Username = user.UserName
+                Username = user.UserName,
+                Rating = rating
             };
             _commentRepo.AddComment(NewComment);
             return RedirectToAction("Details", "Book", new {id = id});
