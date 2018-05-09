@@ -235,6 +235,54 @@ namespace BookCave.Repositories
             Book.CoverImg = coverImage;
             _db.SaveChanges();
         }
+
+        
+        public List<BookListViewModel> GetAllBooksOrderedByName()
+        {
+            //Þetta fer í gagnagrunninn nær í bækur þar og setur inn
+            //og raðar þeim eftir stafrófsröð
+            var Books = GetAllBooks().ToList();
+            
+            var orderedByName = (from b in Books
+                                 orderby b.Title
+                                 select b).ToList();
+            return orderedByName;
+        }
+
+        public List<BookListViewModel> GetAllBooksOrderedByNameDesc()
+        {
+            //Þetta fer í gagnagrunninn nær í bækur þar og setur inn
+            //og raðar þeim eftir öfugri stafrófsröð
+            var Books = GetAllBooks().ToList();
+            var orderedByNameDesc = (from b in Books
+                                     orderby b.Title descending
+                                     select b).ToList();
+            return orderedByNameDesc;
+        }
+
+        public List<BookListViewModel> GetAllBooksOrderedByPrice()
+        {
+            //Þetta fer í gagnagrunninn nær í bækur þar og setur inn
+            //og raðar þeim eftir verði lægsta fyrst
+            var Books = GetAllBooks().ToList();
+            
+            var orderedByPrice = (from b in Books
+                                 orderby b.Price
+                                 select b).ToList();
+            return orderedByPrice;
+        }
+
+        public List<BookListViewModel> GetAllBooksOrderedByPriceDesc()
+        {
+            //Þetta fer í gagnagrunninn nær í bækur þar og setur inn
+            //og raðar þeim eftir verði, hæsta fyrst
+            var Books = GetAllBooks().ToList();
+            
+            var orderedByPriceDesc = (from b in Books
+                                 orderby b.Price descending
+                                 select b).ToList();
+            return orderedByPriceDesc;
+        }
     }
 }
 
