@@ -14,6 +14,7 @@
         <th>#</th>
         <th>Titill</th>
         <th>Verð</th>
+        <th>Magn</th>
         <th></th>
     </tr>
     @foreach(var Item in @Model)
@@ -22,6 +23,7 @@
             <td>@Item.Id</td>
             <td>@Item.Title</td>
             <td>@Item.Price kr.</td>
+            <td>Magn kemur her</td>
             <td><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">Eyða</a></td>
         </tr>
     }
@@ -31,6 +33,7 @@
         <td>
             @total kr.
         </td>
+        <td></td>
         <td></td>
     </tr>
 </table>
