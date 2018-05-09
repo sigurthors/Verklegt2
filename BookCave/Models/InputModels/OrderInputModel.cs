@@ -1,12 +1,7 @@
-using System.Collections.Generic;
-using BookCave.Models.ViewModels;
-
-namespace BookCave.Data.EntityModels
+namespace BookCave.Models.InputModels
 {
-    public class Order
+    public class OrderInputModel
     {
-        public int Id { get; set; }
-        public string UserId { get; set; }
         public string CreditCard { get; set; }
         public string BillingAddress { get; set; }
         public string CCValidate { get; set; }
@@ -16,7 +11,5 @@ namespace BookCave.Data.EntityModels
         public string Country { get; set; }
         public string PostalCode { get; set; }
         public string EmailAddress { get; set; }
-        public bool IsPaid { get; set; }
-        public string Time { get; set; }
     }
 }

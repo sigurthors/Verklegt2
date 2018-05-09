@@ -7,19 +7,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Web;
+using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
-    public class CartController : Controller
+    public class OrderController : Controller
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         private CartRepo _cartRepo;
+        private OrderRepo _orderRepo;
 
-        public CartController(UserManager<ApplicationUser> userManager) 
+        public OrderController(UserManager<ApplicationUser> userManager) 
         {
             _cartRepo = new CartRepo();
+            _orderRepo = new OrderRepo();
             _userManager = userManager;
         }
 
@@ -27,26 +29,35 @@ namespace BookCave.Controllers
         {
             var User = await GetCurrentUserAsync();
             var UserId = User.Id;
-            
-            
-            var Cart = _cartRepo.GetCart(UserId);
-
-            return View(Cart);
+            var Orders = _orderRepo.GetOrders(UserId);
+            return View(Orders);
         }
 
-        public async Task<IActionResult> Add(int bookId)
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Checkout(OrderInputModel order)
         {
             var User = await GetCurrentUserAsync();
             var UserId = User.Id;
-            _cartRepo.AddBookToCart(bookId, UserId);
- 
+            _orderRepo.MakeOrder(order, UserId);
+
             return RedirectToAction("Index");
         }
 
-        public IActionResult Remove(int bookId)
-        {
-            _cartRepo.RemoveFromCart(bookId);
-            return RedirectToAction("Index");
-        }
+/*
+public async Task<IActionResult> Add(int bookId)
+{
+    var User = await GetCurrentUserAsync();
+    var UserId = User.Id;
+    _cartRepo.AddBookToCart(bookId, UserId);
+
+    return RedirectToAction("Index");
+}
+ */
+
     }
 }
