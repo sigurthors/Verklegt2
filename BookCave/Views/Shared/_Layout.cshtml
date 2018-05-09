@@ -18,34 +18,26 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    <img src="~/images/BookCave.png" width="30" height="30" alt="The Book Cave Logo">
-                </a>
-            </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                    <img class="img-responsive" src="~/images/BookCave.png" width="30" height="30" alt="The Book Cave Logo">
+                    </a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Book Cave</a></li>
-                    <li><a asp-area="" asp-controller="Book" asp-action="Categories">Bókaflokkar</a></li>
+                    <li><a asp-area="" asp-controller="Book" asp-action="Index">Bækur</a></li>
                     <li><a asp-area="" asp-controller="Book" asp-action="Top10">Vinsælustu bækur</a></li>
                     <li><a asp-area="" asp-controller="Author" asp-action="Index">Höfundar</a></li>
-                    <li>
+                    <li id="search">
                         <form asp-controller="Book" asp-action="Search" method="post">
-                            <input type="text" placeholder="Leitaðu að bók með nafni, höfund eða ISBN" name="search">
-                            <button type="submit">Leita</button>
+                        <div class="input-group input-group-sm"><input type="text" class="form-control" placeholder="Leitaðu að bók með nafni, höfund eða ISBN" name="search">
+                        <div class="input-group-btn"><<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button></div></div>
                         </form>
                     </li>
-                    <li><a asp-area="" asp-controller="Cart" asp-action="Index">Karfa</a></li>
+                    <li class="pulll-right" id="ShoppingCart"><a asp-area="" asp-controller="Cart" asp-action="Index"><i class="glyphicon glyphicon-shopping-cart"></i><span>?</span></a></li>
+                    <li class="pull-right">@await Html.PartialAsync("_LoginPartial")</li>
                 </ul>
-                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>

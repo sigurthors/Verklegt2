@@ -1,12 +1,12 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 75px;
     padding-bottom: 20px;
 }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
+    padding-left: 50px;
     padding-right: 15px;
 }
 
@@ -21,11 +21,6 @@
     width: 100%;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
-}
-
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
@@ -38,7 +33,15 @@
     width: 300px;
 }
 
+<<<<<<< HEAD
 #user-image {
     height: 150px;
     width: 150px;
 }
+=======
+#search{
+    margin: auto;
+    margin-top: 10px;
+    max-width: 300px;
+}
+>>>>>>> a8024b42b1638f654f7077e7f2e563cc64d7ede6

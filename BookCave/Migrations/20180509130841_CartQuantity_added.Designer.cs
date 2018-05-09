@@ -11,9 +11,10 @@ using System;
 namespace BookCave.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20180509130841_CartQuantity_added")]
+    partial class CartQuantity_added
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,31 +134,11 @@ namespace BookCave.Migrations
 
                     b.Property<string>("PostalCode");
 
-                    b.Property<string>("Time");
-
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BookCave.Data.EntityModels.OrderedBook", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BookId");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<string>("Time");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrderedBooks");
                 });
 
             modelBuilder.Entity("BookCave.Data.EntityModels.User", b =>

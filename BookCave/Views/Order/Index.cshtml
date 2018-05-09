@@ -1,0 +1,15 @@
+@model List<BookCave.Models.ViewModels.OrderViewModel>
+
+@foreach(var Order in @Model)
+{
+    <div>
+        <h1>Orders placed: @Order.Time</h1>
+        <ul>
+            @foreach(var Book in @Order.Books)
+            {
+                <li>@Book.Title - @Book.Price kr.</li>
+            }
+        </ul>
+        <h2>Sent á @Order.Address, @Order.PostalCode, @Order.Country</h2>
+    </div>
+}

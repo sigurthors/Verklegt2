@@ -1,18 +1,46 @@
 @model List<BookCave.Models.ViewModels.CartViewModel>
 
-<h1>YOUR BASKETTTTTTTTT</h1>
-<table>
+@{float total = 0;
+    @foreach(var price in @Model)
+    {
+        total += price.Price;
+    }
+}
+
+<h1>Karfan Þín</h1>
+<div style="width: 50%">
+<table class="table table-bordered">
     <tr>
-        <th>Title</th>
-        <th>Price</th>
+        <th>#</th>
+        <th>Titill</th>
+        <th>Verð</th>
+        <th>Magn</th>
+        <th></th>
     </tr>
     @foreach(var Item in @Model)
     {
         <tr>
             <td>@Item.Id</td>
             <td>@Item.Title</td>
-            <td>@Item.Price</td>
+            <td>@Item.Price kr.</td>
+            <td>Magn kemur her</td>
             <td><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">Eyða</a></td>
         </tr>
     }
+    <tr>
+        <td></td>
+        <th>Heildarverð</th>
+        <td>
+            @total kr.
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
 </table>
+</div>
+<button><a href="@Url.Action("Checkout", "Order")?total=@total"></a>Ganga frá pöntun</button>
+
+<form asp-controller="Order" asp-action="Checkout" method="get">
+    <button>Ganga frá pöntunn án heildarverðs</button>
+</form>
+
