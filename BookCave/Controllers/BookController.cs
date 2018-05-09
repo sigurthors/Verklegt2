@@ -71,13 +71,14 @@ namespace BookCave.Controllers
         }
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Comment(string review, int id)
+        public async Task<IActionResult> Comment(string review, double rating, int id)
         {
             var user = await GetCurrentUserAsync();
             var NewComment = new Comment {
                 Review = review,
                 BookId = id,
-                Username = user.UserName
+                Username = user.UserName,
+                Rating = rating
             };
             _commentRepo.AddComment(NewComment);
             return RedirectToAction("Details", "Book", new {id = id});
