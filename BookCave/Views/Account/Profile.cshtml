@@ -1,21 +1,19 @@
 @model BookCave.Models.ApplicationUser
 <h1>Minn aðgangur</h1>
-<div>
-    <a href="/Account/Edit">Breyta upplýsingum</a>
+<div id="edit-account">
+    <a href="/Account/Edit" class="btn btn-info">Breyta upplýsingum</a>
+    <a href="/Account/OrderHistory" class="btn btn-info">Pöntunarsaga</a>
 </div>
 <div>
-    <a href="/Account/OrderHistory">Pöntunarsaga</a>
+    <h3>@Model.Name</h3>
 </div>
 <div>
-    <p>@Model.Name</p>
+    <h3><strong>Heimilsfang: </strong>@Model.Address</h3>
 </div>
 <div>
-    <p>Heimilsfang: @Model.Address</p>
+    <h3><strong>Uppáhalds bók: </strong>@Model.FavoriteBook</h3>
 </div>
 <div>
-    <p>Uppáhalds bók: @Model.FavoriteBook</p>
-</div>
-<div>
-    <img src="@Model.Image" alt="User image">
+    <img id="user-image" src="~/images/user.jpg" alt="User image">
 </div>
 
