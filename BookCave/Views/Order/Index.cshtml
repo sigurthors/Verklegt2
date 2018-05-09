@@ -3,7 +3,7 @@
 @foreach(var Order in @Model)
 {
     <div>
-        <h1>Orders placed: @Order.Time</h1>
+        <h1>Order placed: @Order.Time</h1>
         <ul>
             @foreach(var Book in @Order.Books)
             {
