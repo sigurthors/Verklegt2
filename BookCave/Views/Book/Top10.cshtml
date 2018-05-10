@@ -16,9 +16,8 @@
             </tr>
         </thead>
         <tbody>
-            @for(int i = 0; i <= @Model.Count(); i++)
-            {
-            @foreach(var Book in Model.Skip(i * 1).Take(1))
+            
+            @foreach(var Book in Model)
             {
                 <tr>
                     <td>@Book.Title</td>
@@ -26,9 +25,12 @@
                     <td>@Book.Author</td>
                     <td>@Book.Category</td>
                     <td>@Book.Price kr.</td>
+                    <td> 
+                        <button class="btn"><a href="@Url.Action("Add", "Cart")?bookId=@Book.Id">Bæta í körfu</a></button>
+                    </td>
                 </tr>
             }
-            }
+            
         </tbody>
     </table>
 </div>
