@@ -28,14 +28,19 @@
 
 .carousel {
     height: 400px;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     width: 100%;
-    background-color: navajowhite;
+    background-color: #f0f0f0;
 }
 /* Declare heights because of positioning of img element */
 
+#carou-a-item, #carou-item {
+    height: 300px;
+    width: 300px;
+}
+
 .carousel-inner > .item > img {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     min-width: 100%;
@@ -46,5 +51,29 @@
   .carousel-inner > .item > a > img {
       width: 25%;
       height: 300px;
-      margin: auto;
+      display: inline-block;
   }
+
+
+  /* override position and transform in 3.3.x */
+.carousel-inner .item.left.active {
+    transform: translateX(-33%);
+  }
+  .carousel-inner .item.right.active {
+    transform: translateX(33%);
+  }
+  
+  .carousel-inner .item.next {
+    transform: translateX(33%)
+  }
+  .carousel-inner .item.prev {
+    transform: translateX(-33%)
+  }
+  
+  .carousel-inner .item.right,
+  .carousel-inner .item.left { 
+    transform: translateX(0);
+  }
+  
+  
+  .carousel-control.left,.carousel-control.right {background-image:none;}
