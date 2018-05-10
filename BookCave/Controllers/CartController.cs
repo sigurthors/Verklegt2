@@ -42,14 +42,18 @@ namespace BookCave.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Remove(int bookId)
+        public async Task<IActionResult> Remove(int bookId)
         {
-            _cartRepo.RemoveFromCart(bookId);
+            var User = await GetCurrentUserAsync();
+            var UserId = User.Id;
+            _cartRepo.RemoveFromCart(bookId, UserId);
             return RedirectToAction("Index");
         }
-        public IActionResult Increase(int bookId)
+        public async Task<IActionResult> Increase(int bookId)
         {
-            _cartRepo.IncreaseInCart(bookId);
+            var User = await GetCurrentUserAsync();
+            var UserId = User.Id;
+            _cartRepo.IncreaseInCart(bookId, UserId);
             return RedirectToAction("Index");
         }
     }
