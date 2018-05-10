@@ -41,6 +41,10 @@ namespace BookCave.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(OrderInputModel order)
         {
+            if(!ModelState.IsValid) 
+            {
+                return View();
+            }
             var User = await GetCurrentUserAsync();
             var UserId = User.Id;
             _orderRepo.MakeOrder(order, UserId);

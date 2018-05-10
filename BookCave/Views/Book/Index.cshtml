@@ -20,12 +20,12 @@
             @foreach(var Book in @Model)
             {
                 <tr>
-                    <td><img src="@Book.CoverImage" alt="Mynd bókar" height="30" width="30"></td>
-                    <td>@Book.Title</td>
+                    <td><a asp-action="Details" asp-controller="Book" asp-route-id="@Book.Id"><img src="@Book.CoverImage" alt="Mynd bókar" height="30" width="30"></a></td>
+                    <td><a asp-action="Details" asp-controller="Book" asp-route-id="@Book.Id">@Book.Title</a></td>
                     <td>@Book.ReleaseYear</td>
                     <td>@Book.Rating</td>
-                    <td>@Book.Author</td>
-                    <td>@Book.Category</td>
+                    <td><a asp-action="Details" asp-controller="Author" asp-route-id="@Book.AuthorId">@Book.Author</a></td>
+                    <td><a asp-action="Category" asp-controller="Book" asp-route-id="@Book.CategoryId">@Book.Category</a></td>
                     <td>@Book.Price</td>
                 </tr>
             }
