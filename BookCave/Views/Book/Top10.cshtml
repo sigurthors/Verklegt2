@@ -1,8 +1,14 @@
 @model List<BookCave.Models.ViewModels.BookListViewModel>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "Vinsælustu bækurnar";
 }
-<h1>10 Vinsælustu bækur</h1>    
+<div class="jumbotron">
+    <h1>Hér má finna 10 vinsælustu bækur The Book Cave!</h1>
+    <p>Athugið að þetta er miðað við einkunagjöf síðunnar, til þess að sjá einkun annara notanda vinsamlegast smellið á þá bók sem þið viljið sjá frekari upplýsingar um!</p>
+</div>
+
 
 <div class="container">
     <table class="table">
@@ -20,17 +26,19 @@
             @foreach(var Book in Model)
             {
                 <tr>
-                    <td>@Book.Title</td>
+                    <td><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></td>
                     <td>@Book.Rating</td>
                     <td>@Book.Author</td>
                     <td>@Book.Category</td>
                     <td>@Book.Price kr.</td>
-                    <td> 
-                        <button class="btn"><a href="@Url.Action("Add", "Cart")?bookId=@Book.Id">Bæta í körfu</a></button>
-                    </td>
+                    @if(SignInManager.IsSignedIn(User))
+                    {
+                        <td>
+                            <button class="btn"><a href="@Url.Action("Add", "Cart")?bookId=@Book.Id">Bæta í körfu</a></button>
+                        </td>
+                    }
                 </tr>
             }
-            
         </tbody>
     </table>
 </div>

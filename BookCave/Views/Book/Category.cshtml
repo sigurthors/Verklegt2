@@ -26,6 +26,7 @@
                         <td>@Book.Rating</td>
                         <td>@Book.Author</td>
                         <td>@Book.Price</td>
+                        <td>@Book.Category</td>
                         @if(SignInManager.IsSignedIn(User))
                         {
                             <td>
@@ -36,5 +37,6 @@
                 }
             </tbody>
         </table>
+        <a asp-controller="Book" asp-action="Index"><button>Til baka</button></a>
     </div>
 </div>

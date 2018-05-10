@@ -65,7 +65,7 @@
             @foreach(var Book in @Model.AuthorsBooks)
             {
                 <div class="column">
-                    <img src="@Book.CoverImage" alt="Book Cover" id="book-cover-images">
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"><img src="@Book.CoverImage" alt="Book Cover" id="book-cover-images"></a>
                 </div>
             }
         </div>
