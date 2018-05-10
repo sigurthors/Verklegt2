@@ -49,6 +49,26 @@ namespace BookCave.Controllers
             var UserId = User.Id;
             _orderRepo.MakeOrder(order, UserId);
 
+            return RedirectToAction("Review");
+        }
+
+        public async Task<IActionResult> Review()
+        {
+            var User = await GetCurrentUserAsync();
+            var UserId = User.Id;
+            var Order = _orderRepo.GetLastOrder(UserId);
+            return View(Order);
+        }
+
+        public async Task<IActionResult> Confirm(bool confirm)
+        {
+            if(confirm == false)
+            {
+                var User = await GetCurrentUserAsync();
+                var UserId = User.Id;
+                var Order = _orderRepo.LastOrder(UserId);
+                _orderRepo.DeleteOrder(Order);
+            }
             return RedirectToAction("Index");
         }
 
