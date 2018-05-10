@@ -35,9 +35,9 @@ namespace BookCave
 
             var InitialAuthors = new List<Author>()
             {
-                new Author { Name = "Joanne K. Rowling", BirthDate = 31071965, AuthorImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/J._K._Rowling_2010.jpg/440px-J._K._Rowling_2010.jpg", Details = "Born in Yate, Gloucestershire, England" },
-                new Author { Name = "John Ronald Reuel Tolkien", BirthDate = 03011892, AuthorImage = "https://upload.wikimedia.org/wikipedia/commons/b/b4/Tolkien_1916.jpg", Details = "Born in South Africa" },
-                new Author { Name = "Dan Brown", BirthDate = 22061964, AuthorImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Dan_Brown_November_2015.jpg/440px-Dan_Brown_November_2015.jpg", Details = "Born in Exeter, New Hampshire, U.S." }
+                new Author { Name = "Joanne K. Rowling", BirthDate = "31071965", AuthorImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/J._K._Rowling_2010.jpg/440px-J._K._Rowling_2010.jpg", Details = "Born in Yate, Gloucestershire, England" },
+                new Author { Name = "John Ronald Reuel Tolkien", BirthDate = "03011892", AuthorImage = "https://upload.wikimedia.org/wikipedia/commons/b/b4/Tolkien_1916.jpg", Details = "Born in South Africa" },
+                new Author { Name = "Dan Brown", BirthDate = "22061964", AuthorImage = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Dan_Brown_November_2015.jpg/440px-Dan_Brown_November_2015.jpg", Details = "Born in Exeter, New Hampshire, U.S." }
             };
 
             var InitialBooks = new List<Book>()
