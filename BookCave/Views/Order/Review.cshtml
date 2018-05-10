@@ -1,4 +1,9 @@
 @model BookCave.Models.ViewModels.OrderViewModel
+
+@{
+    ViewData["Title"] = "Staðfesta pöntun";
+}
+
 <h2>Staðfesting verður send á @Model.EmailAddress</h2>
 @foreach(var Book in @Model.Books)
 {

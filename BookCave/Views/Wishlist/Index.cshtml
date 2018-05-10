@@ -1,5 +1,9 @@
 @model List<BookCave.Models.ViewModels.WishlistViewModel>
 
+@{
+    ViewData["Title"] = "Óskalisti";
+}
+
 <h1>Óskalistinn þinn</h1>
 <ul>
     @foreach(var Item in @Model)

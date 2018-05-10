@@ -1,4 +1,9 @@
 @model BookCave.Data.EntityModels.Comment
+
+@{
+    ViewData["Title"] = "Skrifa ummæli";
+}
+
 <h2>Skrifa ummæli</h2>
 <form asp-controller="Book" asp-action="Comment" method="POST">
     <div class="form-group">

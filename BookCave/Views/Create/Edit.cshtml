@@ -1,7 +1,11 @@
 @model dynamic 
 
+@{
+    ViewData["Title"] = "Breyta bók";
+}
+
 <div>
-    <h2>Editing @Model.Book.Title</h2>
+    <h2>Breyta @Model.Book.Title</h2>
     <form asp-controller="Create" asp-action="Edit" method="post">
         <input type="number" value="@Model.Book.Id" name="id" readonly>
         <input type="text" value="@Model.Book.Title" name="title">
