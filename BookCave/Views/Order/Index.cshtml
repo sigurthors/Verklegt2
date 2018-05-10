@@ -13,6 +13,7 @@
                 <th scope="col">Bækur</th>
                 <th scope="col">Höfundur</th>
                 <th scope="col">Verð</th>
+                <th scope="col">Verð/stk.</th>
                 <th scope="col">Heildarverð</th>
             </tr>
         </thead>
@@ -33,10 +34,9 @@
                 {
                     @Book.Price <span>kr.</span> <br>
                 }</td>
-                <td>@foreach(var Book in @Order.Books)
-                {
-                    <span>0</span>
-                }</td>
+                <td>
+                    <span>@Order.TotalPrice</span>
+                </td>
             </tr>
             }
 

@@ -11,6 +11,6 @@ namespace BookCave.Models.ViewModels
         public string PostalCode { get; set; }
         public string EmailAddress { get; set; }
         public string Time { get; set; }
-        public float TotalPrice { get; set; }
+        public string TotalPrice { get; set; }
     }
 }

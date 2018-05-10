@@ -33,7 +33,8 @@ namespace BookCave.Repositories
                                     PostalCode = order.PostalCode,
                                     EmailAddress = order.EmailAddress,
                                     IsPaid = true,
-                                    Time = formattedTime
+                                    Time = formattedTime,
+                                    TotalPrice = order.TotalPrice
                                    };
             _db.Add(Order);
             _db.SaveChanges();
@@ -72,7 +73,8 @@ namespace BookCave.Repositories
                             City = o.City,
                             PostalCode = o.PostalCode,
                             EmailAddress = o.EmailAddress,
-                            Time = o.Time
+                            Time = o.Time,
+                            TotalPrice = o.TotalPrice
                         }).Distinct().ToList();
             return Orders;
         }

@@ -4,6 +4,7 @@ namespace BookCave.Models.InputModels
 {
     public class OrderInputModel
     {
+        public string TotalPrice { get; set; }
         [Required(ErrorMessage = "Vinsamlegast sláðu inn kortanúmer")]
         public string CreditCard { get; set; }
         [Required(ErrorMessage = "Vinsamlegast sláðu inn heimilsfang")]
