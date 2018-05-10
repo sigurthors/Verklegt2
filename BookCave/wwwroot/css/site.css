@@ -130,3 +130,7 @@
       width: 200px;
       height: 200px;
   }
+
+  #orderTotal {
+      visibility: hidden;
+  }
