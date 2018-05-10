@@ -7,6 +7,7 @@ namespace BookCave.Models.ViewModels
         public List<CartViewModel> Books { get; set; }
         public string Address { get; set; }
         public string Country { get; set; }
+        public string City { get; set; }
         public string PostalCode { get; set; }
         public string EmailAddress { get; set; }
         public string Time { get; set; }

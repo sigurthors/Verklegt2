@@ -14,6 +14,7 @@ namespace BookCave.Data.EntityModels
         public string CCLastName { get; set; }
         public int CVV { get; set; }
         public string Country { get; set; }
+        public string City { get; set; }
         public string PostalCode { get; set; }
         public string EmailAddress { get; set; }
         public bool IsPaid { get; set; }
