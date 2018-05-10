@@ -19,7 +19,7 @@ namespace BookCave.Repositories
         public void MakeOrder(OrderInputModel order, string userId)
         {
             var time = DateTime.Now;
-            string formattedTime = time.ToString("dd, MM, yyyy, hh, mm, ss"); //("yyyy, MM, dd, hh, mm, ss")
+            string formattedTime = time.ToString("dd/MM/yyyy hh:mm:ss"); //("yyyy, MM, dd, hh, mm, ss")
             var Order = new Order { 
                                     UserId = userId,
                                     CreditCard = order.CreditCard,
@@ -43,7 +43,7 @@ namespace BookCave.Repositories
             var OrderedBooks = new List<OrderedBook>();
             
             foreach(var cart in Cart){
-                OrderedBooks.Add(new OrderedBook { UserId = userId, BookId = cart.BookId, OrderId = OrderFromDB.Id, Time = formattedTime});
+                OrderedBooks.Add(new OrderedBook { UserId = userId, BookId = cart.BookId, Quantity = cart.Quantity, OrderId = OrderFromDB.Id, Time = formattedTime});
             }
 
             _db.RemoveRange(Cart);
@@ -63,7 +63,8 @@ namespace BookCave.Repositories
                                     where o.Time == ob.Time
                                     select new CartViewModel{
                                         Title = b.Title,
-                                        Price = b.Price
+                                        Price = b.Price,
+                                        Quantity = ob.Quantity
                                     }).ToList(),
                             Address = o.BillingAddress,
                             Country = o.Country,
