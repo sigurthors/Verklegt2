@@ -9,9 +9,12 @@ using BookCave.Repositories;
 using BookCave.Models.InputModels;
 using System.Dynamic;
 using BookCave.Data.EntityModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookCave.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CreateController : Controller
     {
         private BookRepo _bookRepo;
