@@ -31,8 +31,8 @@
       <h5>Verð: <strong>@Model.Price kr.</strong></h5>
       @if(SignInManager.IsSignedIn(User))
       {
-          <button><a href="@Url.Action("Add", "Cart")?bookId=@Model.Id">Bæta í körfu</a></button>
-          <button><a href="@Url.Action("Add", "Wishlist")?bookId=@Model.Id">Bæta á óskalista</a></button>
+          <a href="@Url.Action("Add", "Cart")?bookId=@Model.Id"><button class="btn btn-success">Bæta í körfu</button></a>
+          <a href="@Url.Action("Add", "Wishlist")?bookId=@Model.Id"><button  class="btn btn-primary">Bæta á óskalista</button></a>
       }
       else 
       {
