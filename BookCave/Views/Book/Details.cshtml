@@ -26,6 +26,7 @@
     {
         <p>Skráður inn sem @claim</p>
         <button><a href="@Url.Action("Add", "Cart")?bookId=@Model.Id">Bæta í körfu</a></button>
+        <button><a href="@Url.Action("Add", "Wishlist")?bookId=@Model.Id">Bæta á óskalista</a></button>
     }
     else 
     {

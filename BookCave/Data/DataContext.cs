@@ -13,6 +13,7 @@ namespace BookCave.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<OrderedBook> OrderedBooks { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder OptionsBuilder)
         {
