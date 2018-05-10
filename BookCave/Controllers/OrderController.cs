@@ -33,8 +33,9 @@ namespace BookCave.Controllers
             return View(Orders);
         }
 
-        public IActionResult Checkout()
+        public IActionResult Checkout(float total)
         {
+            ViewBag.TotalPrice = total;
             return View();
         }
 
