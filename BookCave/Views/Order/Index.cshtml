@@ -11,7 +11,6 @@
                 <th scope="col">Borg</th>
                 <th scope="col">Land</th>
                 <th scope="col">Bækur</th>
-                <th scope="col">Verð</th>
                 <th scope="col">Verð/stk.</th>
                 <th scope="col">Heildarverð</th>
             </tr>
@@ -19,27 +18,25 @@
         <tbody>
             @foreach(var Order in @Model)
             {
-            <tr>
-                <td>@Order.Time</td>
-                <td>@Order.Address</td>
-                <td>@Order.PostalCode</td>
-                <td>@Order.City</td>
-                <td>@Order.Country</td>
-                <td>@foreach(var Book in @Order.Books)
-                {
-                    @Book.Title <span>x</span> @Book.Quantity <br>
-                }</td>
-                <td>@foreach(var Book in @Order.Books)
-                {
-                    @Book.Price <span>kr.</span> <br>
-                }</td>
-                <td>
-                    <span>@Order.TotalPrice</span>
-                </td>
-            </tr>
+                <tr>
+                    <td>@Order.Time</td>
+                    <td>@Order.Address</td>
+                    <td>@Order.PostalCode</td>
+                    <td>@Order.City</td>
+                    <td>@Order.Country</td>
+                    <td>@foreach(var Book in @Order.Books)
+                    {
+                        @Book.Title <span>x</span> @Book.Quantity <br>
+                    }</td>
+                    <td>@foreach(var Book in @Order.Books)
+                    {
+                        @Book.Price <span>kr.</span> <br>
+                    }</td>
+                    <td>
+                        <span>@Order.TotalPrice</span>
+                    </td>
+                </tr>
             }
-
-            
         </tbody>
     </table>
 </div>

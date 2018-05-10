@@ -1,9 +1,15 @@
 @model List<BookCave.Models.ViewModels.WishlistViewModel>
 
-
+<h1>Óskalistinn þinn</h1>
 <ul>
     @foreach(var Item in @Model)
     {
-        <li>@Item.Title</li>
+        <li>
+            <p>
+                <h2>@Item.Title</h2>
+                <a href="@Url.Action("Remove", "Wishlist")?bookId=@Item.BookId"><button class="btn btn-primary">Færa bók í körfu</button></a>
+                <a href="@Url.Action("Remove", "Wishlist")?bookId=@Item.BookId"><button class="btn btn-danger">Eyða bók af lista</button></a>
+            </p>
+        </li>
     }
 </ul>

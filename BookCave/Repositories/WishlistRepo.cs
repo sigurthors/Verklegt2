@@ -23,13 +23,24 @@ namespace BookCave.Repositories
             _db.SaveChanges();
         }
 
+        public void Remove(int bookId, string userId)
+        {
+            var WishlistItem = (from wi in _db.Wishlists
+                                where wi.BookId == bookId
+                                where wi.UserId == userId
+                                select wi).Single();
+            _db.Wishlists.Remove(WishlistItem);
+            _db.SaveChanges();
+        }
+
         public List<WishlistViewModel> GetWishlist(string userId)
         {
             var Books = (from wb in _db.Wishlists
                         join b in _db.Books on wb.BookId equals b.Id
                         where wb.UserId == userId
                         select new WishlistViewModel{
-                            Title = b.Title
+                            Title = b.Title,
+                            BookId = b.Id
                         }).ToList();
             return Books;
         }

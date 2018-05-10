@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
 using BookCave.Models;
 using BookCave.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookCave.Controllers
 {
+    [Authorize]
     public class WishlistController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -30,6 +32,14 @@ namespace BookCave.Controllers
             var User = await GetCurrentUserAsync();
             var UserId = User.Id;
             _wishRepo.Add(bookId, UserId);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Remove(int bookId)
+        {
+            var User = await GetCurrentUserAsync();
+            var UserId = User.Id;
+            _wishRepo.Remove(bookId, UserId);
             return RedirectToAction("Index");
         }
     }
