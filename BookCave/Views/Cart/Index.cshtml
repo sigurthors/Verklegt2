@@ -1,5 +1,9 @@
 @model List<BookCave.Models.ViewModels.CartViewModel>
 
+@{
+    ViewData["Count"] = @Model.Count;
+}
+
 @{float total = 0;
     @foreach(var price in @Model)
     {
