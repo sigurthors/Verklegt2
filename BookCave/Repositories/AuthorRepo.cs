@@ -25,8 +25,7 @@ namespace BookCave.Repositories
                               Name = a.Name,
                               BirthDate = a.BirthDate,
                               AuthorImage = a.AuthorImage,
-                              Details = a.Details,
-                              //Bæta bókum í lista?
+                              Details = a.Details
                           }).Distinct().ToList();
 
             return Authors;
@@ -34,12 +33,6 @@ namespace BookCave.Repositories
 
         public AuthorListViewModel GetAuthorById(int? AuthId)
         {
-            //var BookListByAuthor = new List<string>();
-            //List<string> BookListByAuthor = (from a in _db.Authors
-            //                       join b in _db.Books on a.Id equals b.AuthorId
-            //                     where AuthId == b.AuthorId
-            //                   select b.Title).ToList();
-
             var Author = (from a in _db.Authors
                           join b in _db.Books on a.Id equals b.AuthorId
                           where AuthId == a.Id
@@ -50,10 +43,7 @@ namespace BookCave.Repositories
                               BirthDate = a.BirthDate,
                               AuthorImage = a.AuthorImage,
                               Details = a.Details,
-                              /*Books = (from a in _db.Authors
-                                       join b in _db.Books on a.Id equals b.AuthorId
-                                       where AuthId == b.AuthorId
-                                       select b.Title).ToList()*/
+                              
                               Books = (from a in _db.Authors
                                        join b in _db.Books on a.Id equals b.AuthorId
                                        where AuthId == b.AuthorId

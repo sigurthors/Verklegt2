@@ -80,17 +80,5 @@ namespace BookCave.Controllers
             }
             return RedirectToAction("Index");
         }
-
-/*
-public async Task<IActionResult> Add(int bookId)
-{
-    var User = await GetCurrentUserAsync();
-    var UserId = User.Id;
-    _cartRepo.AddBookToCart(bookId, UserId);
-
-    return RedirectToAction("Index");
-}
- */
-
     }
 }

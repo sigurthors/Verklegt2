@@ -117,7 +117,7 @@ namespace BookCave.Repositories
             var Books = (from b in _db.Books
                             join a in _db.Authors on b.AuthorId equals a.Id
                             join c in _db.Categories on b.CategoryId equals c.Id
-                            select new BookListViewModel{  // Join into a new model
+                            select new BookListViewModel{
                                 Id = b.Id,
                                 Title = b.Title,
                                 CoverImage = b.CoverImg,
@@ -161,7 +161,7 @@ namespace BookCave.Repositories
             var Isbns = (from b in _db.Books
                         join a in _db.Authors on b.AuthorId equals a.Id
                         join c in _db.Categories on b.CategoryId equals c.Id
-                        select new BookListViewModel{  // Join into a new model
+                        select new BookListViewModel{ 
                             Id = b.Id,
                             Title = b.Title,
                             CoverImage = b.CoverImg,
