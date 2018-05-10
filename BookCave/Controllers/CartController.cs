@@ -10,6 +10,7 @@ using System.Web;
 
 namespace BookCave.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -21,7 +22,6 @@ namespace BookCave.Controllers
             _cartRepo = new CartRepo();
             _userManager = userManager;
         }
-
         public async Task<IActionResult> Index()
         {
             var User = await GetCurrentUserAsync();

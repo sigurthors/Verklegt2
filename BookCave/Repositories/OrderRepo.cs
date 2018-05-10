@@ -29,6 +29,7 @@ namespace BookCave.Repositories
                                     CCLastName = order.CCLastName,
                                     CVV = order.CVV,
                                     Country = order.Country,
+                                    City = order.City,
                                     PostalCode = order.PostalCode,
                                     EmailAddress = order.EmailAddress,
                                     IsPaid = true,
@@ -68,6 +69,7 @@ namespace BookCave.Repositories
                                     }).ToList(),
                             Address = o.BillingAddress,
                             Country = o.Country,
+                            City = o.City,
                             PostalCode = o.PostalCode,
                             EmailAddress = o.EmailAddress,
                             Time = o.Time
