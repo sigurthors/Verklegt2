@@ -109,6 +109,11 @@ namespace BookCave.Repositories
 
         public void DeleteOrder(Order order)
         {
+            var Books = (from b in _db.OrderedBooks
+                        join o in _db.Orders on b.OrderId equals o.Id
+                        where b.Time == order.Time
+                        select b).ToList();
+            _db.OrderedBooks.RemoveRange(Books);
             _db.Orders.Remove(order);
             _db.SaveChanges();
         }
