@@ -1,0 +1,9 @@
+@model List<BookCave.Models.ViewModels.WishlistViewModel>
+
+
+<ul>
+    @foreach(var Item in @Model)
+    {
+        <li>@Item.Title</li>
+    }
+</ul>
