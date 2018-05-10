@@ -63,7 +63,10 @@ namespace BookCave.Repositories
                                            Title = b.Title,
                                            CoverImage = b.CoverImg,
                                            AuthorId = a.Id,
-                                           Author = a.Name
+                                           Author = a.Name,
+                                           ReleaseYear = b.ReleaseYear,
+                                           Rating = b.Rating,
+                                           Price = b.Price
                                        }).ToList()
                           }).FirstOrDefault();
             return Author;

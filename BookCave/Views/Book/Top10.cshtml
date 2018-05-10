@@ -5,21 +5,30 @@
 <h1>10 Vinsælustu bækur</h1>    
 
 <div class="container">
-    <div class="row">    
-        @foreach(var Book in Model)
-        {
-            <!--<div style="border: solid; width: 33%;float:left;text-align:center">-->
-            <div class="col-lg-3" align="center">
-            <h3><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h3>
-            <div style="height:180px">
-            <img src="@Book.CoverImage" class="img-thumbnail" alt="Book Cover" width="40%">
-            </div>
-            <p>Einkunn: @Book.Rating</p>
-            <p>Höfundur: @Book.Author</p>
-            <p>Bókaflokkur: @Book.Category</p>
-            <p>Verð: @Book.Price kr.</p>
-            <br>
-            </div>
-        }
-    </div>   
-</div>   
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titill</th>
+                <th>Einkunn</th>
+                <th>Höfundur</th>
+                <th>Bókaflokkur</th>
+                <th>Verð</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i = 0; i <= @Model.Count(); i++)
+            {
+            @foreach(var Book in Model.Skip(i * 1).Take(1))
+            {
+                <tr>
+                    <td>@Book.Title</td>
+                    <td>@Book.Rating</td>
+                    <td>@Book.Author</td>
+                    <td>@Book.Category</td>
+                    <td>@Book.Price kr.</td>
+                </tr>
+            }
+            }
+        </tbody>
+    </table>
+</div>
