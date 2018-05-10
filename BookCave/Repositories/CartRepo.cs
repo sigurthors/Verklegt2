@@ -41,9 +41,9 @@ namespace BookCave.Repositories
 
         }
 
-        public void RemoveFromCart(int bookId)
+        public void RemoveFromCart(int bookId, string UserId)
         {
-            var BookToRemove = _db.Carts.Where(c => c.BookId == bookId).FirstOrDefault();
+            var BookToRemove = _db.Carts.Where(c => c.BookId == bookId && c.UserId == UserId).SingleOrDefault();
             if(BookToRemove.Quantity > 1)
             {
                 BookToRemove.Quantity -= 1;
@@ -56,9 +56,9 @@ namespace BookCave.Repositories
             }
             
         }
-        public void IncreaseInCart(int bookId)
+        public void IncreaseInCart(int bookId, string UserId)
         {
-            var BookToIncrease = _db.Carts.Where(c => c.BookId == bookId).FirstOrDefault();
+            var BookToIncrease = _db.Carts.Where(c => c.BookId == bookId && c.UserId == UserId).SingleOrDefault();
             BookToIncrease.Quantity += 1;
              _db.SaveChanges();
         }
