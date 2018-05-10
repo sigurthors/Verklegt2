@@ -27,3 +27,7 @@ $( document ).ready(function() {
     $("#passwordAgain").keyup(checkPasswordMatch);
     $("#password").keyup(checkPasswordLength);
 });
+
+$('.carousel').carousel({
+    interval: 3000
+  })

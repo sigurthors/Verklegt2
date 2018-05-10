@@ -2,23 +2,50 @@
 @{
     ViewData["Title"] = "The Book Cave";
 }
-<div class="container">
-    <div class="row">
-        @foreach(var Book in @Model)
+
+<div id="carousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel" data-slide-to="1"></li>
+    <li data-target="#carousel" data-slide-to="2"></li>
+    <li data-target="#carousel" data-slide-to="3"></li>
+    <li data-target="#carousel" data-slide-to="4"></li>
+    <li data-target="#carousel" data-slide-to="5"></li>
+    <li data-target="#carousel" data-slide-to="6"></li>
+    <li data-target="#carousel" data-slide-to="7"></li>
+    <li data-target="#carousel" data-slide-to="8"></li>
+    <li data-target="#carousel" data-slide-to="9"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+      @for(int i = 0; i <= 10; i++)
+      {
+        @foreach (var Book in Model.Skip(i*1).Take(1))
         {
-            <div class="col-lg-3" align="center">
-                <h3><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h3>
-                <div style="height:180px">
-                <img src="@Book.CoverImage" class="img-thumbnail" alt="Book Cover" width="40%">
+            @if(i == 0)
+            {
+                <div class="item active" id="item-active">
+                <a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"> <img src="@Book.CoverImage" alt="CoverImage"></a>
                 </div>
-                <p>Útgáfuár: @Book.ReleaseYear</p>
-                <p>Einkunn: @Book.Rating</p>
-                <p>Höfundur: @Book.Author</p>
-                <p>ISBN: @Book.Isbn</p>
-                <p>Bókaflokkur: @Book.Category</p>
-                <p>Verð: @Book.Price</p>
-                <br>
-            </div>
-        }
+          }
+          else
+          {
+              <div class="item">
+                <a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"><img src="@Book.CoverImage" alt="CoverImage"></a>
+              </div> 
+          }
+          }
+      }
     </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
