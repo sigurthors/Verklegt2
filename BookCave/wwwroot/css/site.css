@@ -25,7 +25,7 @@
     max-width: 300px;
 }
 
-.carousel {
+.carousel, .carousel2 {
     height: 400px;
     margin-bottom: 80px;
     width: 100%;
@@ -82,24 +82,51 @@
     position: relative;
     margin-top: 60px;
   }
+  #left-book-details {
+    width: 65%;
+    position: relative;
+    margin-top: 60px;
+  }
    
   .right-column {
     width: 65%;
     margin-top: 60px;
   }
+  #right-book-details {
+    width: 35%;
+    margin-top: 60px;
 
-  #author-container {
+  }
+
+  #author-container, #book-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
     display: flex;
   }
 
-  #author-books {
-      height: 50px;
-      width: 50px;
+  #author-books, #books-comment{
+      height: 80px;
+      width: 80px;
   }
   #author-image {
       height: 240px;
       width: 240px;
+  }
+  #cover-image {
+      float: left;
+      padding: 10px;
+  }
+
+  #list-row {
+      display: flex;
+  }
+  .column {
+    width: 33.33%;
+    padding: 5px;
+  }
+
+  #book-cover-images {
+      width: 200px;
+      height: 200px;
   }

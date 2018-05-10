@@ -7,7 +7,8 @@
         <h2 class="text-center">Allar bækur The Book Cave!</h2>
 <div class="container">
     <div class="row">
-        <table class="table">
+        <table class="table" id="data">
+            <thead>
             <tr>
                 <th>Mynd</th>
                 <th><a href="@Url.Action("Index", "Book")?sortOrder=titill"><span class="glyphicon glyphicon-sort-by-alphabet"></span></a>Titill
@@ -19,8 +20,10 @@
                 <th><a href="@Url.Action("Index", "Book")?sortOrder=lowToHigh"><span class="glyphicon glyphicon-sort-by-order"></span></a>Verð
                     <a href="@Url.Action("Index", "Book")?sortOrder=highToLow"><span class="glyphicon glyphicon-sort-by-order-alt"></span></a></th>
             </tr>
+            </thead>
             @foreach(var Book in @Model)
             {
+                <tbody>
                 <tr>
                     <td><a asp-action="Details" asp-controller="Book" asp-route-id="@Book.Id"><img src="@Book.CoverImage" alt="Mynd bókar" height="30" width="30"></a></td>
                     <td><a asp-action="Details" asp-controller="Book" asp-route-id="@Book.Id">@Book.Title</a></td>
@@ -36,6 +39,7 @@
                         </td>
                     }
                 </tr>
+                </tbody>
             }
         </table>
     </div>
