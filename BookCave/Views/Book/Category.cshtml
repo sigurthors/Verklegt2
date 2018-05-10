@@ -1,14 +1,40 @@
 @model List<BookCave.Models.ViewModels.BookListViewModel>
-
-@foreach(var Book in @Model)
-{
-    <div>
-        <h2><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></h2>
-        <p>Útgáfuár: @Book.ReleaseYear</p>
-        <p>Einkunn: @Book.Rating</p>
-        <p>Höfundur: @Book.Author</p>
-        <p>Bókaflokkur: @Book.Category</p>
-        <p>ISBN: @Book.Isbn</p>
-        <br>
-    </div>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "The Book Cave";
 }
+
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titill</th>
+                    <th>Útgáfuár</th>
+                    <th>Einkunn</th>
+                    <th>Höfundur</th>
+                    <th>Verð</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var Book in @Model)
+                {
+                    <tr>
+                        <td><a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id">@Book.Title</a></td>
+                        <td>@Book.ReleaseYear</td>
+                        <td>@Book.Rating</td>
+                        <td>@Book.Author</td>
+                        <td>@Book.Price</td>
+                        @if(SignInManager.IsSignedIn(User))
+                        {
+                            <td>
+                                <button class="btn"><a href="@Url.Action("Add", "Cart")?bookId=@Book.Id">Bæta í körfu</a></button>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
