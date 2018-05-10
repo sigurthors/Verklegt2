@@ -76,5 +76,48 @@ namespace BookCave.Repositories
                         }).Distinct().ToList();
             return Orders;
         }
+
+        public OrderViewModel GetLastOrder(string userId)
+        {
+            var Order = (from o in _db.Orders
+                        where o.UserId == userId
+                        orderby o.Time descending
+                        select new OrderViewModel
+                        {
+                            Books = (from ob in _db.OrderedBooks
+                                    join b in _db.Books on ob.BookId equals b.Id
+                                    where o.Time == ob.Time
+                                    select new CartViewModel{
+                                        Title = b.Title,
+                                        Price = b.Price,
+                                        Quantity = ob.Quantity
+                                    }).ToList(),
+                            Address = o.BillingAddress,
+                            Country = o.Country,
+                            PostalCode = o.PostalCode,
+                            EmailAddress = o.EmailAddress,
+                            Time = o.Time
+                        }).FirstOrDefault();
+            return Order;
+        }
+        public Order LastOrder(string userId)
+        {
+            var Order = (from o in _db.Orders
+                        where o.UserId == userId
+                        orderby o.Time descending
+                        select o).FirstOrDefault();
+            return Order;
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            var Books = (from b in _db.OrderedBooks
+                        join o in _db.Orders on b.OrderId equals o.Id
+                        where b.Time == order.Time
+                        select b).ToList();
+            _db.OrderedBooks.RemoveRange(Books);
+            _db.Orders.Remove(order);
+            _db.SaveChanges();
+        }
     }
 }
