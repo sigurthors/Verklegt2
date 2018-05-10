@@ -1,18 +1,59 @@
 @model BookCave.Models.ViewModels.AuthorListViewModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = @Model.Name;
 }
-<div>
-    <h2>@Model.Name</h2>
-    <p>Fæddur: @Model.BirthDate</p>
-    <p>Upplýsingar: @Model.Details</p>
-    <img src="@Model.AuthorImage" alt="Author Portrait">
-    <p>Bækur:</p>
-    @foreach(var i in Model.Books)
-    {
-        <p><a asp-controller="Book" asp-action="Details" asp-route-id="@i.Id"><img src="@i.CoverImage" alt="Book Cover"></a></p>
-        <button>Bæta í körfu</button> <button>Bæta á óskalista</button>
-    }
-    
-    <button><a asp-controller="Author" asp-action="Index">Fara til baka</a></button>
-</div>
+
+<main class="container" id="author-container">
+ 
+  <!-- Left Column -->
+  <div class="left-column">
+    <img src="@Model.AuthorImage" alt="Author Image" id="author-image">
+        <h2>@Model.Name</h2>
+      <h4>@Model.BirthDate</h4>
+      <p>@Model.Details</p>
+  </div>
+ 
+ 
+  <!-- Right Column -->
+  <div class="right-column">
+    <!-- Author Books -->
+    <div class="author-books">
+        <table class="table">
+            <tr>
+                <th>Mynd</th>
+                <th>Titill</th>
+                <th>Útgáfuár</th>
+                <th>Einkunn</th>
+                <th>Verð</th>
+                <th></th>
+            </tr>
+            @foreach(var i in Model.Books)
+            {
+                <tr>
+                <td><a asp-action="Details" asp-controller="Book" asp-route-id="@i.Id"><img src="@i.CoverImage" alt="Book Cover" id="author-books" class="thumbnail"></a></td>
+                <td><a asp-action="Details" asp-controller="Book" asp-route-id="@i.Id">@i.Title</a></td>
+                <td>@i.ReleaseYear</td>
+                <td>@i.Rating</td>
+                <td><span>@i.Price</span></td>
+                <td>
+                    @if(SignInManager.IsSignedIn(User))
+                    {
+                        <button><a href="@Url.Action("Add", "Cart")?bookId=@i.Id">Bæta í körfu</a></button>
+                    }
+                    else 
+                    {
+                        <button>
+                            <a asp-area="" asp-controller="Account" asp-action="Login">
+                            <span class="glyphicon glyphicon-log-in"></span> Innskrá til að bæta í körfu</a>
+                        </button>
+                    }
+                </td>
+                </tr>
+            }
+        </table>
+      
+    </div>
+  </div>
+</main>

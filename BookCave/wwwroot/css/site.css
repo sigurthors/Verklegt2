@@ -76,3 +76,30 @@
   
   
   .carousel-control.left,.carousel-control.right {background-image:none;}
+  
+  .left-column {
+    width: 35%;
+    position: relative;
+    margin-top: 60px;
+  }
+   
+  .right-column {
+    width: 65%;
+    margin-top: 60px;
+  }
+
+  #author-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+  }
+
+  #author-books {
+      height: 50px;
+      width: 50px;
+  }
+  #author-image {
+      height: 240px;
+      width: 240px;
+  }
