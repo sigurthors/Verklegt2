@@ -11,6 +11,7 @@ using BookCave.Models.InputModels;
 
 namespace BookCave.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
