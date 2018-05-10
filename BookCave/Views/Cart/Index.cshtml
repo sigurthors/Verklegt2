@@ -49,11 +49,13 @@
         <td></td>
     </tr>
 </table>
+<form asp-controller="Order" asp-action="Checkout" method="post">
+    <div class="input-group input-group-sm"><input type="text" class="form-control" name="total" value=@total readonly>
+    <div class="input-group-btn"><button class="btn btn-default" type="submit">Ganga frá pöntun my dude</button></div></div>
+</form>
 </div>
 
-<form asp-controller="Order" asp-action="Checkout" method="get">
-    <button>Ganga frá pöntun</button>
-</form>
+
 
 <script>
 

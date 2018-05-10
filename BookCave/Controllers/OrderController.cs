@@ -17,6 +17,7 @@ namespace BookCave.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         private CartRepo _cartRepo;
         private OrderRepo _orderRepo;
+        private static string _total;
 
         public OrderController(UserManager<ApplicationUser> userManager) 
         {
@@ -33,13 +34,20 @@ namespace BookCave.Controllers
             return View(Orders);
         }
 
-        public IActionResult Checkout()
+        [HttpPost]
+        public IActionResult Checkout(string total)
         {
-            return View();
+            _total = total;
+            return RedirectToAction("CheckoutInput");
         }
 
+        public IActionResult CheckoutInput()
+        {
+            ViewBag.TotalPrice = _total;
+            return View();
+        }
         [HttpPost]
-        public async Task<IActionResult> Checkout(OrderInputModel order)
+        public async Task<IActionResult> CheckoutInput(OrderInputModel order)
         {
             if(!ModelState.IsValid) 
             {

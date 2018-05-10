@@ -19,5 +19,6 @@ namespace BookCave.Data.EntityModels
         public string EmailAddress { get; set; }
         public bool IsPaid { get; set; }
         public string Time { get; set; }
+        public string TotalPrice { get; set; }
     }
 }

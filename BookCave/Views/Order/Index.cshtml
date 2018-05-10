@@ -1,15 +1,45 @@
 @model List<BookCave.Models.ViewModels.OrderViewModel>
 
-@foreach(var Order in @Model)
-{
-    <div>
-        <h1>Order placed: @Order.Time</h1>
-        <ul>
-            @foreach(var Book in @Order.Books)
+<h2>Þínar pantanir</h2>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Dagsetning</th>
+                <th scope="col">Heimilsfang</th>
+                <th scope="col">Póstnúmer</th>
+                <th scope="col">Borg</th>
+                <th scope="col">Land</th>
+                <th scope="col">Bækur</th>
+                <th scope="col">Verð</th>
+                <th scope="col">Verð/stk.</th>
+                <th scope="col">Heildarverð</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Order in @Model)
             {
-                <li>@Book.Title - @Book.Quantity x @Book.Price kr.</li>
+            <tr>
+                <td>@Order.Time</td>
+                <td>@Order.Address</td>
+                <td>@Order.PostalCode</td>
+                <td>@Order.City</td>
+                <td>@Order.Country</td>
+                <td>@foreach(var Book in @Order.Books)
+                {
+                    @Book.Title <span>x</span> @Book.Quantity <br>
+                }</td>
+                <td>@foreach(var Book in @Order.Books)
+                {
+                    @Book.Price <span>kr.</span> <br>
+                }</td>
+                <td>
+                    <span>@Order.TotalPrice</span>
+                </td>
+            </tr>
             }
-        </ul>
-        <h2>Sent á @Order.Address, @Order.PostalCode, @Order.City, @Order.Country</h2>
-    </div>
-}
+
+            
+        </tbody>
+    </table>
+</div>
