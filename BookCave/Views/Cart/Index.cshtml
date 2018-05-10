@@ -33,8 +33,8 @@
             <td>@Item.Quantity</td>
             <!--<td><input type="number" value="@Item.Quantity" min="0" id="quantity"></td>-->
             <td>
-                <button><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">-</a></button>
-                <button><a href="@Url.Action("Increase", "Cart")?bookId=@Item.Id">+</a></button>
+                <a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id"><button>-</button></a>
+                <a href="@Url.Action("Increase", "Cart")?bookId=@Item.Id"><button>+</button></a>
             </td>
             <!--<td><a href="@Url.Action("Remove", "Cart")?bookId=@Item.Id">Eyða</a></td>-->
         </tr>

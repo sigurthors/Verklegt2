@@ -1,4 +1,6 @@
 @model List<BookCave.Models.ViewModels.BookListViewModel>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 @{
     ViewData["Title"] = "The Book Cave";
 }
@@ -27,6 +29,12 @@
                     <td><a asp-action="Details" asp-controller="Author" asp-route-id="@Book.AuthorId">@Book.Author</a></td>
                     <td><a asp-action="Category" asp-controller="Book" asp-route-id="@Book.CategoryId">@Book.Category</a></td>
                     <td>@Book.Price</td>
+                    @if(SignInManager.IsSignedIn(User))
+                    {
+                        <td>
+                        <button class="btn"><a href="@Url.Action("Add", "Cart")?bookId=@Book.Id">Bæta í körfu</a></button>
+                        </td>
+                    }
                 </tr>
             }
         </table>
