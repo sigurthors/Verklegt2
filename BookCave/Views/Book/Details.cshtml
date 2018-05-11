@@ -13,64 +13,57 @@
 <h1><strong>@Model.Title</strong></h1>
 <div class="container" id="book-container">
   
-  <!-- Left Column -->
-  <div id="left-book-details">
-      
+<!-- Left Column -->
+<div id="left-book-details">
     <img src="@Model.CoverImage" alt="Cover Image" id="cover-image">
-      
-      <h5>Gefin út @Model.ReleaseYear</h5>
-      <br>
-      <h5>Höfundur: @Model.Author</h5>
-      <br>
-      <h5>Einkunn The Book Cave:<strong> @Model.Rating</strong></h5>
-      <br>
-      <h5>Bókaflokkur: @Model.Category</h5>
-      <br>
-      <h5>ISBN: @Model.Isbn</h5>
-      <br>
-      <h5>Verð: <strong>@Model.Price kr.</strong></h5>
-      @if(SignInManager.IsSignedIn(User))
-      {
-          <a href="@Url.Action("Add", "Cart")?bookId=@Model.Id"><button class="btn btn-success">Bæta í körfu</button></a>
-          <a href="@Url.Action("Add", "Wishlist")?bookId=@Model.Id"><button  class="btn btn-primary">Bæta á óskalista</button></a>
-      }
-      else 
-      {
+    <h5>Gefin út @Model.ReleaseYear</h5><br>
+    <h5>Höfundur: @Model.Author</h5><br>
+    <h5>Einkunn The Book Cave:<strong> @Model.Rating</strong></h5><br>
+    <h5>Bókaflokkur: @Model.Category</h5><br>
+    <h5>ISBN: @Model.Isbn</h5><br>
+    <h5>Verð: <strong>@Model.Price kr.</strong></h5>
+    @if(SignInManager.IsSignedIn(User))
+    {
+        <a href="@Url.Action("Add", "Cart")?bookId=@Model.Id"><button class="btn btn-success">Bæta í körfu</button></a>
+        <a href="@Url.Action("Add", "Wishlist")?bookId=@Model.Id"><button  class="btn btn-primary">Bæta á óskalista</button></a>
+    }
+    else 
+    {
         <button>
         <a asp-area="" asp-controller="Account" asp-action="Login">
         <span class="glyphicon glyphicon-log-in"></span> Innskrá til að bæta í körfu</a>
         </button>
-       }
-  </div>
-  <!-- Right Column -->
-  <div id="right-book-details">
-    <!-- Comment Section -->
-        <div class="header">
-            <h3>Ummæli notenda</h3>
-            <div id="comment-content">
-                @if(@Model.Comments.Count() == 0)
-                {
-                    <p><i>Engin ummæli hafa verið skrifuð...</i></p>
-                    <p><i>Vertu fyrstu til að skrifa ummæli!</i></p>
-                }    
-                @foreach(var i in Model.Comments)
-                {
-                <p><strong>@i.Username gaf einkunn:</strong> <i>@i.Rating</i></p>
-                @if(@i.Review != null)
-                {
-                <p> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
-                }
-                }
-            </div>
-            <div id="comment-button">
-                    <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli og gefa einkunn</a>
-            </div>
-        </div>
+    }
+</div>
+<!-- Right Column -->
+<div id="right-book-details">
+<!-- Comment Section -->
+    <div class="header">
+        <h3>Ummæli notenda</h3>
+        <div id="comment-content">
+            @if(@Model.Comments.Count() == 0)
+            {
+                <p><i>Engin ummæli hafa verið skrifuð...</i></p>
+                <p><i>Vertu fyrstu til að skrifa ummæli!</i></p>
+            }    
+            @foreach(var i in Model.Comments)
+            {
+            <p><strong>@i.Username gaf einkunn:</strong> <i>@i.Rating</i></p>
+            @if(@i.Review != null)
+            {
+            <p> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
+            }
+            }
+    </div>
+    <div id="comment-button">
+        <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli og gefa einkunn</a>
+    </div>
     </div>
 </div>
+</div>
+
 <div class="container">
     <h2>Aðrar bækur eftir @Model.Author</h2>
-
     @if(@Model.AuthorsBooks.Count() <= 3)
     {
         <div class="row" id="list-row">
@@ -85,30 +78,30 @@
     else
     {
         <div id="carousel2" class="carousel slide" data-ride="carousel">
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-      @for(int i = 0; i <= @Model.AuthorsBooks.Count(); i++)
-      {
-        @foreach (var Book in @Model.AuthorsBooks.Skip(i*1).Take(1))
-        {
-            @if(i == 0)
-            {
-                <div class="item active" id="item-active">
-                  <div class="col-md-4">
-                     <a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"> <img src="@Book.CoverImage" alt="CoverImage" id="carou-a-item"></a>
-                  </div>
-                </div>
-            }
-            else
-            {
-                <div class="item">
-                  <div class="col-md-4">
-                     <a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"> <img src="@Book.CoverImage" alt="CoverImage" id="carou-item"></a>
-                  </div>
-                </div> 
-            }
-        }
-      }
+<!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                @for(int i = 0; i <= @Model.AuthorsBooks.Count(); i++)
+                {
+                    @foreach (var Book in @Model.AuthorsBooks.Skip(i*1).Take(1))
+                    {
+                        @if(i == 0)
+                        {
+                            <div class="item active" id="item-active">
+                                <div class="col-md-4">
+                                    <a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"> <img src="@Book.CoverImage" alt="CoverImage" id="carou-a-item"></a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="item">
+                                <div class="col-md-4">
+                                    <a asp-controller="Book" asp-action="Details" asp-route-id="@Book.Id"> <img src="@Book.CoverImage" alt="CoverImage" id="carou-item"></a>
+                                </div>
+                            </div> 
+                        }
+                    }
+    }
     </div>
     </div>
   <!-- Controls -->
