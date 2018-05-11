@@ -49,12 +49,6 @@ namespace BookCave.Controllers
             _cartRepo.RemoveFromCart(bookId, UserId);
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> Increase(int bookId)
-        {
-            var User = await GetCurrentUserAsync();
-            var UserId = User.Id;
-            _cartRepo.IncreaseInCart(bookId, UserId);
-            return RedirectToAction("Index");
-        }
+
     }
 }
