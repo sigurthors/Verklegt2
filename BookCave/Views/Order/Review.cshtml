@@ -12,5 +12,5 @@
 }
 <h3>Senda á: @Model.Address, @Model.PostalCode, @Model.City - @Model.Country</h3>
 
-<a href="@Url.Action("Confirm", "Order")?confirm=true"><button>Staðfesta</button></a>
-<a href="@Url.Action("Confirm", "Order")?confirm=false"><button>Hætta við pöntun</button></a>
+<a href="@Url.Action("Confirm", "Order")?confirm=true"><button class="btn btn-primary">Staðfesta</button></a>
+<a href="@Url.Action("Confirm", "Order")?confirm=false"><button class="btn btn-danger">Hætta við pöntun</button></a>
