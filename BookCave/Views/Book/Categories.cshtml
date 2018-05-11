@@ -3,10 +3,12 @@
 @{
     ViewData["Title"] = "Bókaflokkar";
 }
-
+<div>
+    <h1>Allir bókaflokkar</h1>
+</div>
 @foreach(var Category in @Model)
     {
     <div>
-        <h2><a asp-controller="Book" asp-action="Category" asp-route-id="@Category.Id">@Category.CategoryName</a></h2>
+        <h4><a asp-controller="Book" asp-action="Category" asp-route-id="@Category.Id">@Category.CategoryName</a></h4>
     </div>
 }
