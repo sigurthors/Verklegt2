@@ -48,8 +48,6 @@ namespace BookCave.Repositories
                 OrderedBooks.Add(new OrderedBook { UserId = userId, BookId = cart.BookId, Quantity = cart.Quantity, OrderId = OrderFromDB.Id, Time = formattedTime});
             }
 
-            _db.RemoveRange(Cart);
-
             _db.AddRange(OrderedBooks);
             _db.SaveChanges();
         }

@@ -15,10 +15,6 @@ ul {
     padding-right: 15px;
 }
 
-#comment-container {
-    width: 300px;
-}
-
 #user-image {
     height: 150px;
     width: 150px;
@@ -89,17 +85,17 @@ ul {
   #left-book-details {
     width: 65%;
     position: relative;
-    margin-top: 60px;
+    margin-top: 20px;
   }
    
   .right-column {
-    width: 65%;
+    width: 60%;
     margin-top: 60px;
   }
   #right-book-details {
-    width: 35%;
-    margin-top: 60px;
-
+    width: 40%;
+    margin-top: 20px;
+    height: 300px;
   }
 
   #author-container, #book-container {
@@ -137,4 +133,14 @@ ul {
 
   #orderTotal {
       visibility: hidden;
+  }
+
+  #comment-content {
+      max-height: 250px;
+      overflow: auto;
+  }
+
+  #comment-button {
+      padding-top: 10px;
+      height: 25px;
   }
