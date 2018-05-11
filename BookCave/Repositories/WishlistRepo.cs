@@ -17,10 +17,13 @@ namespace BookCave.Repositories
 
         public void Add(int bookId, string userId)
         {
-            var Book = _db.Books.Where(b => b.Id == bookId);
-            var WishlistItem = new Wishlist{ BookId = bookId, UserId = userId};
-            _db.Wishlists.Add(WishlistItem);
-            _db.SaveChanges();
+            if(!Find(bookId, userId))
+            {
+                var Book = _db.Books.Where(b => b.Id == bookId);
+                var WishlistItem = new Wishlist{ BookId = bookId, UserId = userId};
+                _db.Wishlists.Add(WishlistItem);
+                _db.SaveChanges();
+            }
         }
 
         public void Remove(int bookId, string userId)
@@ -43,6 +46,19 @@ namespace BookCave.Repositories
                             BookId = b.Id
                         }).ToList();
             return Books;
+        }
+
+        public bool Find(int bookId, string userId)
+        {
+            var FoundBook = (from b in _db.Wishlists
+                            where b.BookId == bookId
+                            where b.UserId == userId
+                            select b).SingleOrDefault();
+            if(FoundBook == null)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
