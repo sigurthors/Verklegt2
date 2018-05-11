@@ -8,8 +8,6 @@ ul {
     list-style-type: none;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
 .body-content {
     padding-left: 50px;
     padding-right: 15px;
@@ -31,7 +29,6 @@ ul {
     width: 100%;
     background-color: #eee;
 }
-/* Declare heights because of positioning of img element */
 
 #carou-a-item, #carou-item {
     height: 300px;
@@ -52,9 +49,6 @@ ul {
       height: 300px;
       display: inline-block;
   }
-
-
-  /* override position and transform in 3.3.x */
 .carousel-inner .item.left.active {
     transform: translateX(-33%);
   }
@@ -73,7 +67,6 @@ ul {
   .carousel-inner .item.left { 
     transform: translateX(0);
   }
-  
   
   .carousel-control.left,.carousel-control.right {background-image:none;}
   
