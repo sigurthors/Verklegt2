@@ -144,3 +144,7 @@ ul {
       padding-top: 10px;
       height: 25px;
   }
+
+  #navbar {
+      width: 1250px;
+  }
