@@ -17,7 +17,7 @@
     {
         <li>
             <p>
-                <h2>@Item.Title</h2>
+                <h2><a href="/Book/Details/@Item.BookId">@Item.Title</a></h2>
                 <a href="@Url.Action("MoveToCart", "Wishlist")?bookId=@Item.BookId"><button class="btn btn-primary">Færa bók í körfu</button></a>
                 <a href="@Url.Action("Remove", "Wishlist")?bookId=@Item.BookId"><button class="btn btn-danger">Eyða bók af lista</button></a>
             </p>
