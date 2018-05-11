@@ -45,16 +45,28 @@
   <!-- Right Column -->
   <div id="right-book-details">
     <!-- Comment Section -->
-    <div class="books-comment">
-        <h3>Ummæli notanda:</h3> 
-        @foreach(var i in Model.Comments)
-        {
-            <p><strong>@i.Username gaf einkunn:</strong> <i>@i.Rating</i></p>
-            <p id="comment-container"> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
-        }
-        <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli og gefa einkunn</a>
+        <div class="header">
+            <h3>Ummæli notenda</h3>
+            <div id="comment-content">
+                @if(@Model.Comments.Count() == 0)
+                {
+                    <p><i>Engin ummæli hafa verið skrifuð...</i></p>
+                    <p><i>Vertu fyrstu til að skrifa ummæli!</i></p>
+                }    
+                @foreach(var i in Model.Comments)
+                {
+                <p><strong>@i.Username gaf einkunn:</strong> <i>@i.Rating</i></p>
+                @if(@i.Review != null)
+                {
+                <p> <strong>@i.Username skrifaði:</strong> <i>@i.Review</i> </p>
+                }
+                }
+            </div>
+            <div id="comment-button">
+                    <a asp-action="Comment" asp-controller="Book" asp-route-id="@Model.Id" class="btn btn-info">Skrifa ummæli og gefa einkunn</a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="container">
     <h2>Aðrar bækur eftir @Model.Author</h2>
