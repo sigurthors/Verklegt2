@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 75px;
     padding-bottom: 20px;
-    background-color: #f0f0f0;
+    background-color: #eee;
 }
 
 ul {
@@ -29,7 +29,7 @@ ul {
     height: 400px;
     margin-bottom: 80px;
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #eee;
 }
 /* Declare heights because of positioning of img element */
 
