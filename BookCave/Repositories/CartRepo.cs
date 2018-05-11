@@ -68,5 +68,12 @@ namespace BookCave.Repositories
                         }).ToList();
             return Cart;
         }
+
+        public void RemoveUserCart(string userId)
+        {
+            var Cart = _db.Carts.Where(c => c.UserId == userId).ToList();
+            _db.RemoveRange(Cart);
+            _db.SaveChanges();
+        }
     }
 }

@@ -71,13 +71,16 @@ namespace BookCave.Controllers
 
         public async Task<IActionResult> Confirm(bool confirm)
         {
+            var User = await GetCurrentUserAsync();
+            var UserId = User.Id;
+
             if(confirm == false)
             {
-                var User = await GetCurrentUserAsync();
-                var UserId = User.Id;
                 var Order = _orderRepo.LastOrder(UserId);
                 _orderRepo.DeleteOrder(Order);
             }
+            
+            _cartRepo.RemoveUserCart(UserId);
             return RedirectToAction("Index");
         }
     }
