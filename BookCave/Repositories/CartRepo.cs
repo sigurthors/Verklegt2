@@ -47,12 +47,6 @@ namespace BookCave.Repositories
             }
             
         }
-        public void IncreaseInCart(int bookId, string UserId)
-        {
-            var BookToIncrease = _db.Carts.Where(c => c.BookId == bookId && c.UserId == UserId).SingleOrDefault();
-            BookToIncrease.Quantity += 1;
-             _db.SaveChanges();
-        }
 
         public List<CartViewModel> GetCart(string userId)
         {
