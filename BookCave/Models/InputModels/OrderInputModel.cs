@@ -16,7 +16,7 @@ namespace BookCave.Models.InputModels
         [Required(ErrorMessage = "Vinsamlegast sláðu inn seinna nafn")]
         public string CCLastName { get; set; }
         [Required(ErrorMessage = "Vinsamlegast sláðu inn CVV númer")]
-        public int CVV { get; set; }
+        public int? CVV { get; set; }
         [Required(ErrorMessage = "Vinsamlegast veldu land")]
         public string Country { get; set; }
         [Required(ErrorMessage = "Vinsamlegast sláðu inn póstnúmer")]

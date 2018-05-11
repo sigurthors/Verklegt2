@@ -94,6 +94,7 @@ namespace BookCave.Repositories
                                     }).ToList(),
                             Address = o.BillingAddress,
                             Country = o.Country,
+                            City = o.City,
                             PostalCode = o.PostalCode,
                             EmailAddress = o.EmailAddress,
                             Time = o.Time

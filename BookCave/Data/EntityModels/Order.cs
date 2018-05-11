@@ -12,7 +12,7 @@ namespace BookCave.Data.EntityModels
         public string CCValidate { get; set; }
         public string CCFirstName { get; set; }
         public string CCLastName { get; set; }
-        public int CVV { get; set; }
+        public int? CVV { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
